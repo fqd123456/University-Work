@@ -1,0 +1,121 @@
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e5f6ec 0%, #f4fbf7 45%, #ffffff 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(140rpx + env(safe-area-inset-top)) 48rpx 60rpx;
+  box-sizing: border-box;
+  color: #1f2937;
+}
+
+.login-logo {
+  margin-top: 20rpx;
+  margin-bottom: 24rpx;
+}
+
+.logo-circle {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a8f4b 0%, #2db166 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18rpx 30rpx rgba(24, 120, 70, 0.22);
+}
+
+.logo-text {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2rpx;
+}
+
+.login-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 60rpx;
+}
+
+.login-btn {
+  width: 100%;
+  height: 96rpx;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24rpx;
+  box-sizing: border-box;
+}
+
+.login-btn-text {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.login-btn.primary {
+  background: #22a35a;
+  box-shadow: 0 18rpx 30rpx rgba(34, 163, 90, 0.28);
+}
+
+.login-btn.primary .login-btn-text {
+  color: #ffffff;
+}
+
+.login-btn.ghost {
+  border: 2rpx solid #22a35a;
+  background: #ffffff;
+  margin-bottom: 0;
+}
+
+.ghost-text {
+  color: #22a35a;
+}
+
+.login-btn.disabled {
+  opacity: 0.6;
+}
+
+.login-policy {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  color: #6b7280;
+  font-size: 22rpx;
+  line-height: 32rpx;
+}
+
+.policy-check {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  border: 2rpx solid #c7d3cc;
+  margin-top: 4rpx;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.policy-check.checked {
+  border-color: #22a35a;
+  background: #22a35a;
+}
+
+.policy-check.checked::after {
+  content: '';
+  position: absolute;
+  left: 7rpx;
+  top: 3rpx;
+  width: 8rpx;
+  height: 14rpx;
+  border: 2rpx solid #ffffff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.policy-text {
+  flex: 1;
+}

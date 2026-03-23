@@ -1,0 +1,144 @@
+.mainPage{
+  background: #f8f9fb;
+  height: 100vh;
+}
+
+.card {
+  margin: 16px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.itemTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+
+  .itemLeft {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #333333;
+    position: relative;
+    padding-left: 20rpx;
+
+    // 左侧装饰条
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6rpx;
+      height: 28rpx;
+      background-color: #eb3636; // 可根据主题色修改
+      border-radius: 4rpx;
+    }
+  }
+
+  .itemRight {
+    font-size: 26rpx;
+    color: #999999;
+  }
+}
+
+.itemContent {
+  .itemNews {
+    padding: 24rpx;
+    margin-bottom: 12rpx;
+    background-color: #f8f9fa;
+    border-radius: 8rpx;
+    transition: background-color 0.2s;
+
+    &:active {
+      background-color: #ebebeb; // 点击反馈
+    }
+
+    .itemCenter {
+      font-size: 28rpx;
+      color: #444444;
+      line-height: 1.5;
+      // 文字溢出隐藏（单行）
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.guide-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8rpx;
+}
+
+.guide-step {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.guide-step-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.guide-step-line {
+  flex: 1;
+  height: 2rpx;
+  background: #d8dee9;
+}
+
+.guide-step-line-hidden {
+  opacity: 0;
+}
+
+.guide-step-circle {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: #e7edf5;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.guide-step-circle-active {
+  background: #eb3636;
+  color: #ffffff;
+  box-shadow: 0 8rpx 18rpx rgba(235, 54, 54, 0.18);
+}
+
+.guide-step-num {
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.guide-step-title {
+  display: block;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.guide-step-title-active {
+  color: #eb3636;
+}
+
+.guide-step-desc {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  line-height: 1.5;
+  color: #94a3b8;
+}

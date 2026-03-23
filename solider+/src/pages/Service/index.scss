@@ -1,0 +1,77 @@
+.card {
+  margin: 16px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  
+}
+
+.itemTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+
+  .itemLeft {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #333333;
+    position: relative;
+    padding-left: 20rpx;
+
+    // 左侧装饰条
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6rpx;
+      height: 28rpx;
+      background-color: #eb3636; // 可根据主题色修改
+      border-radius: 4rpx;
+    }
+  }
+
+  .itemRight {
+    font-size: 26rpx;
+    color: #999999;
+  }
+}
+
+.itemContent {
+  .itemNews {
+    padding: 24rpx;
+    margin-bottom: 12rpx;
+    background-color: #f8f9fa;
+    border-radius: 8rpx;
+    transition: background-color 0.2s;
+
+    &:active {
+      background-color: #ebebeb; // 点击反馈
+    }
+
+    .itemCenter {
+      font-size: 28rpx;
+      color: #444444;
+      line-height: 1.5;
+      // 文字溢出隐藏（单行）
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+// .guide {
+//   margin: 16px;
+//   padding: 20px;
+//   background-color: #ffffff;
+//   border-radius: 12px;
+//   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+// }

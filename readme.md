@@ -5,6 +5,12 @@
 1. 毕业设计： ./soldier+
 2. 还没想好...
 
+# 项目需接技术（熟悉企业化生产要求）
+1. 接入哈士奇（规范化代码提交）
+2. 配置lint规则 （养成良好的代码习惯）
+3. todo
+
 # Taro 项目创建
 1. npm install -g @tarojs/cli 全局安装taro cli
-2. taro init 初始化项目
+2. taro init 初始化项目 （使用推荐的ui框架，避免重复造轮子）
+3. 

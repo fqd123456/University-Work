@@ -1,0 +1,74 @@
+.custom-header-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400rpx; // 根据你轮播图想展示的高度调整
+
+  .header-swiper {
+    width: 100%;
+    height: 100%;
+    
+    .swiper-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 40rpx;
+    }
+  }
+
+  // 悬浮在轮播图之上的容器
+  .search-container {
+    position: absolute;
+    top: 35rpx;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 30rpx;
+    box-sizing: border-box;
+    z-index: 10;
+
+    .city-picker {
+      display: flex;
+      align-items: center;
+      margin-right: 20rpx;
+
+      .city-name {
+        color: #ffffff;
+        font-size: 34rpx;
+        font-weight: bold;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3); // 防止背景太亮看不清字
+      }
+
+      .arrow-down {
+        width: 0;
+        height: 0;
+        border-left: 10rpx solid transparent;
+        border-right: 10rpx solid transparent;
+        border-top: 12rpx solid #ffffff;
+        margin-left: 10rpx;
+      }
+    }
+
+    .search-input-wrapper {
+      flex: 1;
+      // 这里的宽度需要避开胶囊按钮，通常胶囊按钮占据右侧 100px 左右
+      margin-right: 220rpx; 
+      height: 100%; // 跟随胶囊按钮高度
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px); // 毛玻璃效果，提升质感
+      border-radius: 40rpx;
+      display: flex;
+      align-items: center;
+      padding: 0 24rpx;
+
+      .nav-input {
+        flex: 1;
+        color: #ffffff;
+        font-size: 26rpx;
+      }
+    }
+  }
+}

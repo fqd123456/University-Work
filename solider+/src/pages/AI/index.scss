@@ -1,0 +1,286 @@
+.ai-page {
+  /* 关键 1: 占满全屏高度 */
+  height: 100vh; 
+  /* 关键 2: 开启 Flex 布局，垂直排列 */
+  display: flex;
+  flex-direction: column;
+  --tabbar-height: 100rpx;
+  
+  background: linear-gradient(180deg, #f8dfe7 0%, #f1e7f4 45%, #f6f4f9 100%);
+  font-family: "PingFang SC", "Source Han Sans SC", "Helvetica Neue", sans-serif;
+  color: #2b2f36;
+  overflow: hidden; /* 防止页面整体出现滚动条 */
+  padding: 0; 
+  box-sizing: border-box;
+}
+
+.ai-title-wrap {
+  flex-shrink: 0; /* 防止被压缩 */
+  display: flex;
+  align-items: center;
+  height: 98rpx; 
+  width: 100%;
+  padding: 0 32rpx; /* 调整 padding，让内容垂直居中更自然 */
+  padding-top: 80rpx;
+
+  background: #a34444;
+  color: #ffffff;
+  box-shadow: 0 4rpx 12rpx rgba(163, 68, 68, 0.15);
+}
+
+.ai-title {
+  display: flex;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.ai-help {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  margin-top: 10rpx;
+  margin-left: 16rpx;
+  border: 1rpx solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18rpx;
+  background-color: rgba(255,255,255,0.2); /* 稍微加点背景让问号更清晰 */
+}
+
+.ai-scroll-area {
+  /* 【关键 3】自动占据 Header 和 Footer 之间的所有剩余空间 */
+  flex: 1;
+  width: 100%;
+  overflow: hidden; /* 隐藏原生滚动条，由 ScrollView 接管 */
+  min-height: 0;
+  
+  .ai-scroll-content {
+    padding: 24rpx;
+    display: flex;
+    flex-direction: column;
+    /* 如果内容很少，gap 可以保证间距；如果内容多，正常滚动 */
+    gap: 24rpx; 
+  }
+}
+
+.ai-welcome-card {
+  display: flex;
+  gap: 16rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 16rpx 28rpx rgba(123, 76, 115, 0.18);
+  margin-bottom: 20rpx;
+}
+
+.ai-mascot {
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #ff8aa6 0%, #ff6c8f 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 26rpx;
+  box-shadow: inset 0 0 10rpx rgba(255, 255, 255, 0.4);
+}
+
+.ai-welcome-content {
+  flex: 1;
+}
+
+.ai-welcome-text {
+  font-size: 26rpx;
+  line-height: 38rpx;
+  color: #3f3a44;
+}
+
+.ai-welcome-actions {
+  margin-top: 14rpx;
+  display: flex;
+  gap: 12rpx;
+}
+
+.ai-section {
+  padding: 0 32rpx;
+  margin-top: 12rpx;
+}
+
+.ai-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14rpx;
+  margin: 20rpx 0 16rpx;
+}
+
+.ai-divider {
+  flex: 1;
+  height: 2rpx;
+  background: rgba(128, 128, 144, 0.2);
+}
+
+.ai-section-text {
+  font-size: 24rpx;
+  color: #8b8b97;
+}
+
+.ai-feedback {
+  margin: 18rpx 32rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #9a98a5;
+  font-size: 22rpx;
+}
+
+.ai-feedback-actions {
+  display: flex;
+  gap: 12rpx;
+}
+
+.ai-feedback-btn {
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 22rpx;
+  color: #8a8d94;
+}
+
+.ai-chat-card {
+  margin: 18rpx 32rpx 0;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background: #ffffff;
+  box-shadow: 0 16rpx 28rpx rgba(123, 76, 115, 0.12);
+}
+
+.ai-chat-text {
+  font-size: 26rpx;
+  color: #3a3a42;
+  line-height: 38rpx;
+}
+
+.ai-chat-actions {
+  margin-top: 14rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.ai-chat-chip {
+  padding: 10rpx 20rpx;
+  border-radius: 999rpx;
+  background: #f5f6fa;
+  color: #4b5563;
+  font-size: 24rpx;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 150rpx;
+  box-sizing: border-box;
+  gap: 12rpx;
+}
+
+/* --- 横向滚动容器 (ScrollView) --- */
+.ai-chips-scroll {
+  width: 100%;
+  /* 关键：限制高度，防止内部内容撑开导致多行 */
+  height: 80rpx; /* 根据 chip 的高度 + padding 调整，略大一点以防阴影被切 */
+  
+  /* 隐藏滚动条的通用写法 (部分小程序可能需要特定属性) */
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
+/* --- Chips 内容区 --- */
+.ai-chips {
+  /* 关键 1: 移除 flex-wrap，强制一行 */
+  display: flex;
+  flex-wrap: nowrap; 
+  
+  /* 关键 2: 宽度设为自适应或足够大，配合 white-space */
+  width: max-content; 
+  padding-left: 8rpx; 
+  padding-right: 8rpx;
+  
+  gap: 12rpx;
+  align-items: center;
+}
+
+.ai-chip {
+  /* 关键 3: 防止文字换行 */
+  white-space: nowrap;
+  
+  padding: 10rpx 22rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.9);
+  color: #3c3c44;
+  font-size: 24rpx;
+  box-shadow: 0 10rpx 18rpx rgba(123, 76, 115, 0.1);
+  
+  /* 可选：添加点击态 */
+  &:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+.ai-input-bar {
+  margin: 0 24rpx calc(24rpx + var(--tabbar-height) + env(safe-area-inset-bottom));
+  background: #ffffff;
+  border-radius: 999rpx;
+  padding: 8rpx 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  box-shadow: 0 16rpx 28rpx rgba(0, 0, 0, 0);
+}
+
+.ai-input-icon,
+.ai-send,
+.ai-plus {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.ai-input-icon {
+  background: #f3f4f6;
+  color: #9a98a5;
+}
+
+.ai-send {
+  background: #ff7ba6;
+  color: #ffffff;
+}
+
+.ai-plus {
+  border: 2rpx solid #d1d5db;
+  color: #6b7280;
+}
+
+.ai-input {
+  flex: 1;
+  font-size: 26rpx;
+  color: #2b2f36;
+}
+
+.ai-input-placeholder {
+  color: #b2b4bc;
+}

@@ -1,0 +1,369 @@
+.mine-page {
+  min-height: 100vh;
+  background: #f5f6f8;
+  padding-bottom: 48rpx;
+  color: #1f2937;
+}
+
+.mine-header {
+  padding:80rpx 32rpx 28rpx;
+  background: #9f4747;
+  border-bottom-left-radius: 32rpx;
+  border-bottom-right-radius: 32rpx;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 24rpx;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #cfd8e3 0%, #e7ecf4 100%);
+  border: 6rpx solid #ffffff;
+  box-shadow: 0 10rpx 20rpx rgba(31, 41, 55, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-text {
+  font-size: 36rpx;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.profile-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.profile-id {
+  font-size: 24rpx;
+  color: #9ca3af;
+}
+
+.member-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18rpx 20rpx;
+  border-radius: 18rpx;
+  background: linear-gradient(90deg, #f0d59b 0%, #f6e3b8 55%, #f7e9c8 100%);
+  box-shadow: 0 12rpx 24rpx rgba(126, 92, 32, 0.18);
+}
+
+.member-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.member-badge {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 16rpx;
+  background: linear-gradient(135deg, #f4b86b 0%, #f9d28f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 6rpx rgba(255, 255, 255, 0.6);
+}
+
+.member-badge-text {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #6b4a1e;
+}
+
+.member-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #5c3f18;
+}
+
+.member-desc {
+  font-size: 22rpx;
+  color: #7c5b2c;
+  margin-top: 4rpx;
+}
+
+.member-btn {
+  background: #2f3b46;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+}
+
+.member-btn-text {
+  font-size: 22rpx;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.section {
+  margin: 20rpx 32rpx 0;
+}
+
+.mini-cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mini-card {
+  background: #ffffff;
+  border-radius: 18rpx;
+  padding: 18rpx;
+  min-height: 180rpx;
+  box-shadow: 0 8rpx 20rpx rgba(31, 41, 55, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(50% - 160rpx);
+}
+
+.mini-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.mini-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8rpx 0 6rpx;
+}
+
+.mini-icon-text {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mini-icon-record {
+  background: linear-gradient(135deg, #8ec5ff 0%, #a4d6ff 100%);
+}
+
+.mini-icon-medal {
+  background: linear-gradient(135deg, #d9f0c4 0%, #bfe7b0 100%);
+  color: #3b5a28;
+}
+
+.mini-desc {
+  font-size: 22rpx;
+  color: #9ca3af;
+}
+
+.stats-card {
+  background: #ffffff;
+  border-radius: 18rpx;
+  padding: 20rpx 16rpx;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 8rpx 20rpx rgba(31, 41, 55, 0.06);
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.stat-item + .stat-item {
+  margin-left: 8rpx;
+}
+
+.stat-icon {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 16rpx;
+  background: #eef2ff;
+}
+
+.stat-icon-stats {
+  background: linear-gradient(135deg, #ffb985 0%, #ffcaa4 100%);
+}
+
+.stat-icon-level {
+  background: linear-gradient(135deg, #ff9ab7 0%, #ffc0d0 100%);
+}
+
+.stat-icon-pb {
+  background: linear-gradient(135deg, #91d3ff 0%, #b0e3ff 100%);
+}
+
+.stat-icon-bmi {
+  background: linear-gradient(135deg, #9fe6b8 0%, #c8f0d6 100%);
+}
+
+.stat-text {
+  font-size: 22rpx;
+  color: #4b5563;
+}
+
+.todo-card {
+  background: #ffffff;
+  border-radius: 18rpx;
+  padding: 20rpx 24rpx 8rpx;
+  box-shadow: 0 8rpx 20rpx rgba(31, 41, 55, 0.06);
+}
+
+.todo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+
+.todo-subtitle {
+  font-size: 22rpx;
+  color: #9ca3af;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.todo-item-last {
+  border-bottom: none;
+}
+
+.todo-left {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+}
+
+.todo-right {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.todo-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: #e5e7eb;
+}
+
+.todo-dot-profile {
+  background: #9f4747;
+}
+
+.todo-dot-card {
+  background: #f0b45f;
+}
+
+.todo-dot-service {
+  background: #5fb3f0;
+}
+
+.todo-text {
+  font-size: 26rpx;
+  color: #374151;
+}
+
+.todo-status {
+  font-size: 22rpx;
+  color: #9ca3af;
+  background: #f3f4f6;
+  padding: 4rpx 12rpx;
+  border-radius: 999rpx;
+}
+
+.todo-arrow {
+  color: #c3c7cf;
+  font-size: 28rpx;
+}
+
+.tools-card {
+  background: #ffffff;
+  border-radius: 18rpx;
+  padding: 20rpx 24rpx 8rpx;
+  box-shadow: 0 8rpx 20rpx rgba(31, 41, 55, 0.06);
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.tool-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.tool-item-last {
+  border-bottom: none;
+}
+
+.tool-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.tool-icon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 12rpx;
+  background: #f3f4f6;
+}
+
+.tool-icon-train {
+  background: linear-gradient(135deg, #ffd37a 0%, #ffe5a7 100%);
+}
+
+.tool-icon-favorite {
+  background: linear-gradient(135deg, #ffb3c1 0%, #ffd2da 100%);
+}
+
+.tool-icon-service {
+  background: linear-gradient(135deg, #a4d6ff 0%, #c3e6ff 100%);
+}
+
+.tool-icon-official {
+  background: linear-gradient(135deg, #bfe7b0 0%, #d7f2c9 100%);
+}
+
+.tool-text {
+  font-size: 26rpx;
+  color: #374151;
+}
+
+.tool-arrow {
+  color: #c3c7cf;
+  font-size: 28rpx;
+}
