@@ -1,0 +1,110 @@
+[
+  {
+    "_id": "health_log_template_001",
+    "userId": "__template__",
+    "weightKg": 82.1,
+    "recordedAt": "2026-02-03",
+    "recordedMonthLabel": "Feb",
+    "heightCmSnapshot": 182,
+    "bmi": 24.8
+  },
+  {
+    "_id": "health_log_template_002",
+    "userId": "__template__",
+    "weightKg": 82.4,
+    "recordedAt": "2026-02-10",
+    "recordedMonthLabel": "Feb",
+    "heightCmSnapshot": 182,
+    "bmi": 24.9
+  },
+  {
+    "_id": "health_log_template_003",
+    "userId": "__template__",
+    "weightKg": 83.0,
+    "recordedAt": "2026-02-18",
+    "recordedMonthLabel": "Feb",
+    "heightCmSnapshot": 182,
+    "bmi": 25.1
+  },
+  {
+    "_id": "health_log_template_004",
+    "userId": "__template__",
+    "weightKg": 84.2,
+    "recordedAt": "2026-02-26",
+    "recordedMonthLabel": "Feb",
+    "heightCmSnapshot": 182,
+    "bmi": 25.4
+  },
+  {
+    "_id": "health_log_template_005",
+    "userId": "__template__",
+    "weightKg": 83.5,
+    "recordedAt": "2026-03-05",
+    "recordedMonthLabel": "Mar",
+    "heightCmSnapshot": 182,
+    "bmi": 25.2
+  },
+  {
+    "_id": "health_log_template_006",
+    "userId": "__template__",
+    "weightKg": 84.4,
+    "recordedAt": "2026-03-14",
+    "recordedMonthLabel": "Mar",
+    "heightCmSnapshot": 182,
+    "bmi": 25.5
+  },
+  {
+    "_id": "health_log_template_007",
+    "userId": "__template__",
+    "weightKg": 83.6,
+    "recordedAt": "2026-03-20",
+    "recordedMonthLabel": "Mar",
+    "heightCmSnapshot": 182,
+    "bmi": 25.2
+  },
+  {
+    "_id": "health_log_template_008",
+    "userId": "__template__",
+    "weightKg": 85.1,
+    "recordedAt": "2026-03-29",
+    "recordedMonthLabel": "Mar",
+    "heightCmSnapshot": 182,
+    "bmi": 25.7
+  },
+  {
+    "_id": "health_log_template_009",
+    "userId": "__template__",
+    "weightKg": 84.3,
+    "recordedAt": "2026-04-07",
+    "recordedMonthLabel": "Apr",
+    "heightCmSnapshot": 182,
+    "bmi": 25.4
+  },
+  {
+    "_id": "health_log_template_010",
+    "userId": "__template__",
+    "weightKg": 85.0,
+    "recordedAt": "2026-04-16",
+    "recordedMonthLabel": "Apr",
+    "heightCmSnapshot": 182,
+    "bmi": 25.7
+  },
+  {
+    "_id": "health_log_template_011",
+    "userId": "__template__",
+    "weightKg": 85.5,
+    "recordedAt": "2026-04-24",
+    "recordedMonthLabel": "Apr",
+    "heightCmSnapshot": 182,
+    "bmi": 25.8
+  },
+  {
+    "_id": "health_log_template_012",
+    "userId": "__template__",
+    "weightKg": 84.8,
+    "recordedAt": "2026-05-02",
+    "recordedMonthLabel": "May",
+    "heightCmSnapshot": 182,
+    "bmi": 25.6
+  }
+]

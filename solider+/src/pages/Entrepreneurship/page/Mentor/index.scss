@@ -1,0 +1,113 @@
+.entrepreneurship-mentor-page {
+  min-height: 100vh;
+  padding: 24rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top right, rgba(139, 54, 54, 0.08) 0, rgba(139, 54, 54, 0) 30%),
+    linear-gradient(180deg, #f7f1ef 0%, #f5f3f1 100%);
+}
+
+.entrepreneurship-mentor-header,
+.entrepreneurship-mentor-status,
+.entrepreneurship-mentor-card {
+  padding: 28rpx;
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12rpx 28rpx rgba(110, 74, 70, 0.08);
+}
+
+.entrepreneurship-mentor-title,
+.entrepreneurship-mentor-status-title,
+.entrepreneurship-mentor-card-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #2f1f1f;
+}
+
+.entrepreneurship-mentor-desc,
+.entrepreneurship-mentor-status-desc,
+.entrepreneurship-mentor-card-subtitle,
+.entrepreneurship-mentor-card-desc {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #786868;
+}
+
+.entrepreneurship-mentor-status-action,
+.entrepreneurship-mentor-card-link {
+  display: inline-flex;
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #8b3636;
+}
+
+.entrepreneurship-mentor-list {
+  margin-top: 24rpx;
+}
+
+.entrepreneurship-mentor-card {
+  margin-bottom: 18rpx;
+}
+
+.entrepreneurship-mentor-card:last-child {
+  margin-bottom: 0;
+}
+
+.entrepreneurship-mentor-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.entrepreneurship-mentor-card-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.entrepreneurship-mentor-card-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #8b3636;
+  background: rgba(139, 54, 54, 0.08);
+}
+
+.entrepreneurship-mentor-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 18rpx;
+}
+
+.entrepreneurship-mentor-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  color: #8b3636;
+  background: rgba(139, 54, 54, 0.08);
+}
+
+.entrepreneurship-mentor-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+  margin-top: 20rpx;
+}
+
+.entrepreneurship-mentor-card-foot-text {
+  font-size: 22rpx;
+  color: #8b7574;
+}

@@ -1,47 +1,179 @@
-import { View, Text, Image, Input } from '@tarojs/components'
-import { useEffect, useState } from 'react'
+import { View, Text, Image, Input, Textarea, Picker } from '@tarojs/components'
+import { useEffect, useRef, useState } from 'react'
 import Taro, { useDidShow } from '@tarojs/taro'
 import './index.scss'
 
-const normalizeUserInfo = (rawUser: any) => {
+type UserProfile = {
+  name: string
+  nickname: string
+  avatar: string
+  openid: string
+  _id: string
+  phone: string
+  realName: string
+  gender: string
+  serviceRegion: string
+  birthDate: string
+  bio: string
+  auditStatus: string
+  isLogin: boolean
+}
+
+type EditableProfile = {
+  nickname: string
+  avatar: string
+  gender: string
+  birthDate: string
+  bio: string
+}
+
+const genderOptions = ['未设置', '男', '女']
+
+const emptyEditableProfile: EditableProfile = {
+  nickname: '',
+  avatar: '',
+  gender: '',
+  birthDate: '',
+  bio: '',
+}
+
+const normalizeUserInfo = (rawUser: any): UserProfile | null => {
   if (!rawUser) return null
   const source = rawUser.data ? rawUser.data : rawUser
 
   return {
-    name: source.name || source.real_name || source.nickname || '',
+    name: source.nickname || source.name || source.real_name || source.realName || '',
     nickname: source.nickname || source.name || '',
     avatar: source.avatar || '',
     openid: source.openid || source._id || '',
     _id: source._id || source.openid || '',
     phone: source.phone || '',
+    realName: source.real_name || source.realName || '',
+    gender: source.gender || '',
+    serviceRegion: source.service_region || source.serviceRegion || '',
+    birthDate: source.birth_date || source.birthDate || '',
+    bio: source.bio || '',
+    auditStatus: source.auditStatus || source.audit_status || '',
+    isLogin: typeof source.isLogin === 'boolean'
+      ? source.isLogin
+      : source.is_login === true,
   }
 }
 
-const UserInfo = () => {
-  const [userInfo, setUserInfo] = useState<any>(null)
-  const [nickname, setNickname] = useState('')
-  const [avatar, setAvatar] = useState('')
-  const [initialProfile, setInitialProfile] = useState({
-    nickname: '',
-    avatar: '',
-  })
+const getEditableProfile = (profile: UserProfile | null): EditableProfile => {
+  if (!profile) {
+    return {
+      ...emptyEditableProfile,
+    }
+  }
 
-  useDidShow(() => {
+  return {
+    nickname: profile.nickname || profile.name || '',
+    avatar: profile.avatar || '',
+    gender: profile.gender || '',
+    birthDate: profile.birthDate || '',
+    bio: profile.bio || '',
+  }
+}
+
+const getAuditStatusLabel = (auditStatus: string) => {
+  if (!auditStatus) return '未认证'
+  const status = `${auditStatus}`.toLowerCase()
+
+  if (status === 'approved' || status === 'success' || status === 'passed' || status === 'done') {
+    return '已认证'
+  }
+  if (status === 'pending' || status === 'processing' || status === 'reviewing') {
+    return '审核中'
+  }
+  if (status === 'rejected' || status === 'failed' || status === 'refused') {
+    return '未通过'
+  }
+
+  return auditStatus
+}
+
+const getGenderPickerIndex = (gender: string) => {
+  const target = gender || ''
+  const index = genderOptions.indexOf(target)
+  return index > -1 ? index : 0
+}
+
+const UserInfo = () => {
+  const [userInfo, setUserInfo] = useState<UserProfile | null>(null)
+  const [form, setForm] = useState<EditableProfile>({
+    ...emptyEditableProfile,
+  })
+  const [initialProfile, setInitialProfile] = useState<EditableProfile>({
+    ...emptyEditableProfile,
+  })
+  const [pageLoading, setPageLoading] = useState(false)
+  const [saveLoading, setSaveLoading] = useState(false)
+  const hasLoadedRef = useRef(false)
+
+  const hasPendingChanges = (
+    form.nickname !== initialProfile.nickname
+    || form.avatar !== initialProfile.avatar
+    || form.gender !== initialProfile.gender
+    || form.birthDate !== initialProfile.birthDate
+    || form.bio !== initialProfile.bio
+  )
+
+  const updateStoredUser = (nextUser: UserProfile) => {
+    setUserInfo(nextUser)
+    Taro.setStorageSync('currentUser', nextUser)
+  }
+
+  const syncProfileState = (nextUser: UserProfile) => {
+    const nextForm = getEditableProfile(nextUser)
+    updateStoredUser(nextUser)
+    setForm(nextForm)
+    setInitialProfile(nextForm)
+  }
+
+  const loadUserProfile = async () => {
     const cacheUser = normalizeUserInfo(Taro.getStorageSync('currentUser'))
-    if (!cacheUser) {
+
+    if (!cacheUser && !userInfo) {
+      Taro.showToast({ title: '请先登录', icon: 'none' })
       Taro.navigateBack()
       return
     }
-    setUserInfo(cacheUser)
-    setNickname(cacheUser.nickname || cacheUser.name || '')
-    setAvatar(cacheUser.avatar || '')
-    setInitialProfile({
-      nickname: cacheUser.nickname || cacheUser.name || '',
-      avatar: cacheUser.avatar || '',
-    })
-  })
 
-  const hasPendingChanges = nickname !== initialProfile.nickname || avatar !== initialProfile.avatar
+    if (cacheUser && !userInfo) {
+      const cacheForm = getEditableProfile(cacheUser)
+      setUserInfo(cacheUser)
+      setForm(cacheForm)
+      setInitialProfile(cacheForm)
+    }
+
+    try {
+      setPageLoading(true)
+      const res = await Taro.cloud.callFunction({
+        name: 'getUserProfile',
+      })
+      const result = res.result as any
+
+      if (result && result.success && result.data) {
+        const remoteUser = normalizeUserInfo(result.data)
+        if (remoteUser) {
+          syncProfileState(remoteUser)
+        }
+      }
+    } catch (err) {
+      console.error('获取用户资料失败', err)
+    } finally {
+      setPageLoading(false)
+    }
+  }
+
+  useDidShow(() => {
+    const shouldRefresh = !hasLoadedRef.current || !hasPendingChanges
+    if (shouldRefresh) {
+      hasLoadedRef.current = true
+      void loadUserProfile()
+    }
+  })
 
   useEffect(() => {
     if (hasPendingChanges) {
@@ -66,28 +198,55 @@ const UserInfo = () => {
       })
       const tempPath = res.tempFilePaths && res.tempFilePaths[0]
       if (tempPath) {
-        setAvatar(tempPath)
+        setForm((prev) => ({
+          ...prev,
+          avatar: tempPath,
+        }))
       }
     } catch (err) {
       console.error('选择头像失败', err)
     }
   }
 
-  const handleSave = async (silent?: boolean) => {
-    if (!userInfo) return
-    let saveSuccess = false
+  const updateField = (field: keyof EditableProfile, value: string) => {
+    setForm((prev) => ({
+      ...prev,
+      [field]: value,
+    }))
+  }
+
+  const handleGenderChange = (event: any) => {
+    const nextIndex = Number(event.detail.value)
+    updateField('gender', nextIndex > 0 ? genderOptions[nextIndex] : '')
+  }
+
+  const handleBirthDateChange = (event: any) => {
+    const value = event && event.detail ? `${event.detail.value || ''}` : ''
+    updateField('birthDate', value)
+  }
+
+  const handleSave = async () => {
+    if (!userInfo || saveLoading) return
+
+    const nextNickname = form.nickname.trim()
+    if (!nextNickname) {
+      Taro.showToast({ title: '请填写昵称', icon: 'none' })
+      return
+    }
 
     try {
+      setSaveLoading(true)
       Taro.showLoading({ title: '保存中...' })
-      let avatarToSave = avatar
+      let avatarToSave = form.avatar
 
-      if (avatar && avatar.indexOf('cloud://') !== 0) {
-        const ext = avatar.split('.').pop() || 'jpg'
+      if (form.avatar && form.avatar.indexOf('cloud://') !== 0) {
+        const avatarParts = form.avatar.split('.')
+        const ext = avatarParts.length > 1 ? avatarParts[avatarParts.length - 1] : 'jpg'
         const userId = userInfo.openid || userInfo._id || 'user'
         const cloudPath = `avatars/${userId}_${Date.now()}.${ext}`
         const uploadRes = await Taro.cloud.uploadFile({
           cloudPath,
-          filePath: avatar
+          filePath: form.avatar
         })
         avatarToSave = uploadRes.fileID
       }
@@ -95,26 +254,32 @@ const UserInfo = () => {
       const res = await Taro.cloud.callFunction({
         name: 'updateUserInfo',
         data: {
-          nickname,
-          avatar: avatarToSave
+          nickname: nextNickname,
+          avatar: avatarToSave,
+          gender: form.gender,
+          birthDate: form.birthDate,
+          bio: form.bio,
         }
       })
       const result = res.result as any
 
       if (result && result.success) {
-        const newUser = normalizeUserInfo(result.data)
-        Taro.setStorageSync('currentUser', newUser)
-        setUserInfo(newUser)
-        setAvatar(newUser.avatar || avatarToSave || '')
-        setNickname(newUser.nickname || nickname || '')
-        setInitialProfile({
-          nickname: newUser.nickname || nickname || '',
-          avatar: newUser.avatar || avatarToSave || '',
-        })
-        saveSuccess = true
-        if (!silent) {
-          Taro.showToast({ title: '已保存' })
+        const savedUser = normalizeUserInfo(result.data)
+        if (savedUser) {
+          syncProfileState(savedUser)
+        } else {
+          const fallbackUser: UserProfile = {
+            ...userInfo,
+            nickname: nextNickname,
+            name: nextNickname,
+            avatar: avatarToSave,
+            gender: form.gender,
+            birthDate: form.birthDate,
+            bio: form.bio,
+          }
+          syncProfileState(fallbackUser)
         }
+        Taro.showToast({ title: '已保存', icon: 'success' })
       } else {
         Taro.showToast({ title: '保存失败', icon: 'none' })
       }
@@ -122,15 +287,14 @@ const UserInfo = () => {
       console.error('保存失败', err)
       Taro.showToast({ title: '保存失败', icon: 'none' })
     } finally {
+      setSaveLoading(false)
       Taro.hideLoading()
     }
-
-    return saveSuccess
   }
 
   const performLogout = async () => {
     Taro.showLoading({ title: '正在退出...' })
-    
+
     try {
       const res = await Taro.cloud.callFunction({ name: 'logoutHandler' })
       const result = res.result as any
@@ -143,9 +307,12 @@ const UserInfo = () => {
       Taro.removeStorageSync('currentUser')
       Taro.setStorageSync('skipLogin', true)
       setUserInfo(null)
-      setNickname('')
-      setAvatar('')
-      setInitialProfile({ nickname: '', avatar: '' })
+      setForm({
+        ...emptyEditableProfile,
+      })
+      setInitialProfile({
+        ...emptyEditableProfile,
+      })
       Taro.disableAlertBeforeUnload()
       Taro.switchTab({ url: '/pages/Mine/index' })
       Taro.hideLoading()
@@ -193,65 +360,139 @@ const UserInfo = () => {
     }
   }
 
-  const phone = userInfo && userInfo.phone ? userInfo.phone : '未绑定'
+  const auditStatusLabel = getAuditStatusLabel(userInfo ? userInfo.auditStatus : '')
+  const canSave = hasPendingChanges && !saveLoading && !pageLoading
 
   return (
     <View className='user-page'>
+      <View className='user-hero'>
+        <Text className='user-hero-title'>完善个人信息</Text>
+        <Text className='user-hero-desc'>
+          {pageLoading ? '资料同步中...' : '这里维护昵称、头像和个人简介，实名信息请到身份认证页填写。'}
+        </Text>
+      </View>
+
       <View className='user-card'>
+        <Text className='section-title'>基础资料</Text>
+
         <View className='user-row'>
           <Text className='row-label'>头像</Text>
-          <View className='row-right' onClick={chooseAvatar}>
-            {avatar ? (
-              <Image className='avatar-img' src={avatar} mode='aspectFill' />
+          <View className='row-right row-right-avatar' onClick={chooseAvatar}>
+            {form.avatar ? (
+              <Image className='avatar-img' src={form.avatar} mode='aspectFill' />
             ) : (
               <View className='avatar-placeholder'>
-                <Text className='avatar-text'>人</Text>
+                <Text className='avatar-text'>兵</Text>
               </View>
             )}
+            <Text className='row-value row-action-text'>更换</Text>
             <Text className='row-arrow'>&gt;</Text>
           </View>
         </View>
+
         <View className='divider' />
+
         <View className='user-row'>
-          <Text className='row-label'>用户名</Text>
-          <View className='row-right'>
+          <Text className='row-label'>昵称</Text>
+          <View className='row-input-wrap'>
             <Input
               className='row-input'
-              value={nickname}
-              placeholder='微信用户'
-              onInput={(e) => setNickname(e.detail.value)}
+              value={form.nickname}
+              maxlength={20}
+              placeholder='请输入昵称'
+              onInput={(event) => updateField('nickname', event.detail.value)}
             />
-            <Text className='row-arrow'>&gt;</Text>
           </View>
         </View>
+
         <View className='divider' />
+
         <View className='user-row'>
-          <Text className='row-label'>手机号</Text>
-          <View className='row-right'>
-            <Text className='row-value'>{phone}</Text>
-            <Text className='row-arrow'>&gt;</Text>
+          <Text className='row-label'>性别</Text>
+          <Picker
+            mode='selector'
+            range={genderOptions}
+            value={getGenderPickerIndex(form.gender)}
+            onChange={handleGenderChange}
+          >
+            <View className='picker-trigger'>
+              <Text className={`row-value ${form.gender ? '' : 'row-placeholder'}`}>
+                {form.gender || '请选择'}
+              </Text>
+              <Text className='row-arrow'>&gt;</Text>
+            </View>
+          </Picker>
+        </View>
+
+        <View className='divider' />
+
+        <View className='user-row'>
+          <Text className='row-label'>出生年月</Text>
+          <Picker mode='date' fields='month' value={form.birthDate} onChange={handleBirthDateChange}>
+            <View className='picker-trigger'>
+              <Text className={`row-value ${form.birthDate ? '' : 'row-placeholder'}`}>
+                {form.birthDate || '请选择出生年月'}
+              </Text>
+              <Text className='row-arrow'>&gt;</Text>
+            </View>
+          </Picker>
+        </View>
+
+      </View>
+
+      <View className='user-card'>
+        <View className='section-head'>
+          <Text className='section-title'>个人简介</Text>
+          <Text className='section-tag'>选填</Text>
+        </View>
+        <Textarea
+          className='bio-textarea'
+          maxlength={120}
+          value={form.bio}
+          placeholder='介绍一下自己，如退役年份、擅长方向、目前需求等'
+          onInput={(event) => updateField('bio', event.detail.value)}
+        />
+        <Text className='textarea-count'>{form.bio.length}/120</Text>
+      </View>
+
+      <View className='user-card user-card-compact'>
+        <View className='status-row'>
+          <View>
+            <Text className='section-title'>身份认证</Text>
+            <Text className='status-desc'>完成退役军人认证，享受更多专属服务与便捷办理能力。</Text>
+          </View>
+          <View className='status-side'>
+            <Text className={`status-badge ${auditStatusLabel === '已认证' ? 'status-badge-success' : ''}`}>
+              {auditStatusLabel}
+            </Text>
+            <Text
+              className='status-link'
+              onClick={() => Taro.navigateTo({ url: '/pages/VeteranAuth/index' })}
+            >
+              {auditStatusLabel === '已认证' ? '查看认证' : '去认证'}
+            </Text>
           </View>
         </View>
       </View>
 
-      <View>
-        <Text className='guide-desc'>完成退役军人身份认证后可解锁更多。</Text>
-        <Text className='guide-desc' onClick={() => Taro.navigateTo({ url: '/pages/VeteranAuth/index' })}>去认证</Text>
-      </View>
-
-      {hasPendingChanges && (
-        <View className='save-wrap'>
-          <View className='save-btn' onClick={() => handleSave()}>
-            <Text className='save-text'>保存修改</Text>
-          </View>
+      <View className='action-wrap'>
+        <View
+          className={`save-btn ${canSave ? '' : 'save-btn-disabled'}`}
+          onClick={() => {
+            if (canSave) {
+              void handleSave()
+            }
+          }}
+        >
+          <Text className='save-text'>{saveLoading ? '保存中...' : hasPendingChanges ? '保存修改' : '暂无修改'}</Text>
         </View>
-      )}
+      </View>
 
       <View className='logout-wrap'>
         <View className='logout-btn' onClick={handleLogout}>
           <Text className='logout-text'>退出登录</Text>
         </View>
-        <Text className='cancel-text'>我要注销</Text>
+        <Text className='cancel-text'>如需注销账号，请联系当地服务站协助处理。</Text>
       </View>
     </View>
   )

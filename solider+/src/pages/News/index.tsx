@@ -1,6 +1,8 @@
 import { View, Text, ScrollView } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import LightLoading from '../../components/LightLoading'
+import VirtualList from '../../components/VirtualList'
 import {
   NEWS_CURRENT_ITEM_KEY,
   NEWS_LIST_CACHE_KEY,
@@ -23,7 +25,6 @@ const BUFFER_SIZE = 5
 const News = () => {
   const [activeTab, setActiveTab] = useState(0)
   const [newsList, setNewsList] = useState<NewsItem[]>([])
-  const [scrollTop, setScrollTop] = useState(0)
   const [listHeight, setListHeight] = useState(600)
   const [showBackTop, setShowBackTop] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -90,17 +91,8 @@ const News = () => {
     return newsList.filter(item => item.tab === activeKey)
   }, [activeKey, newsList])
 
-  const totalCount = list.length
-  const visibleCount = Math.max(1, Math.ceil(listHeight / ITEM_HEIGHT))
-  const startIndex = Math.max(0, Math.floor(scrollTop / ITEM_HEIGHT) - BUFFER_SIZE)
-  const endIndex = Math.min(totalCount, startIndex + visibleCount + BUFFER_SIZE * 2)
-  const visibleItems = list.slice(startIndex, endIndex)
-  const offsetTop = startIndex * ITEM_HEIGHT
-  const offsetBottom = (totalCount - endIndex) * ITEM_HEIGHT
-
   const handleTabChange = (index: number) => {
     setActiveTab(index)
-    setScrollTop(0)
     setShowBackTop(false)
     setScrollOffset(prev => (prev === 0 ? 0.01 : 0))
   }
@@ -116,40 +108,55 @@ const News = () => {
 
   const handleScroll = useCallback((event) => {
     const top = event.detail.scrollTop
-    setScrollTop(top)
     setShowBackTop(top > 30)
   }, [])
 
   return (
     <View className='news-page'>
       <View className='news-header'>
-        <View className='news-tabs'>
-          {newsTabs.map((tab, index) => (
-            <View
-              key={tab.key}
-              className={`news-tab ${index === activeTab ? 'active' : ''}`}
-              onClick={() => handleTabChange(index)}
-            >
-              <Text>{tab.label}</Text>
-            </View>
-          ))}
-        </View>
+        <ScrollView className='news-tabs' scrollX showScrollbar={false} enhanced>
+          <View className='news-tabs-track'>
+            {newsTabs.map((tab, index) => (
+              <View
+                key={tab.key}
+                className={`news-tab ${index === activeTab ? 'active' : ''}`}
+                onClick={() => handleTabChange(index)}
+              >
+                <Text>{tab.label}</Text>
+              </View>
+            ))}
+          </View>
+        </ScrollView>
       </View>
 
-      <ScrollView
+      <VirtualList
+        items={list}
+        itemHeight={ITEM_HEIGHT}
+        height={listHeight}
+        bufferSize={BUFFER_SIZE}
         className='news-list'
-        scrollY
-        // 关键：不要直接绑定实时变动的 scrollTop
-        // 只有在点击“回到顶部”时，才通过一个独立的状态去改变它
         scrollTop={scrollOffset}
         scrollWithAnimation
         onScroll={handleScroll}
-        style={{ height: `${listHeight}px` }}
+        keyExtractor={item => item.id}
+        renderItem={item => (
+          <View
+            className='news-item'
+            style={{ height: `${ITEM_HEIGHT}px` }}
+            onClick={() => handleCardClick(item)}
+          >
+            <View className='news-card'>
+              <Text className='news-title'>{item.title}</Text>
+              <View className='news-meta'>
+                <Text className='news-source'>{item.source}</Text>
+                <Text className='news-time'>{item.time}</Text>
+              </View>
+            </View>
+          </View>
+        )}
       >
         {loading && newsList.length === 0 ? (
-          <View className='news-status'>
-            <Text className='news-status-text'>正在加载最新资讯...</Text>
-          </View>
+          <LightLoading text='正在加载最新资讯...' />
         ) : errorText && newsList.length === 0 ? (
           <View className='news-status'>
             <Text className='news-status-text'>{errorText}</Text>
@@ -161,29 +168,8 @@ const News = () => {
           <View className='news-status'>
             <Text className='news-status-text'>当前分类暂无资讯</Text>
           </View>
-        ) : (
-          <>
-            <View style={{ height: `${offsetTop}px` }} />
-            {visibleItems.map(item => (
-              <View
-                key={item.id}
-                className='news-item'
-                style={{ height: `${ITEM_HEIGHT}px` }}
-                onClick={() => handleCardClick(item)}
-              >
-                <View className='news-card'>
-                  <Text className='news-title'>{item.title}</Text>
-                  <View className='news-meta'>
-                    <Text className='news-source'>{item.source}</Text>
-                    <Text className='news-time'>{item.time}</Text>
-                  </View>
-                </View>
-              </View>
-            ))}
-            <View style={{ height: `${offsetBottom}px` }} />
-          </>
-        )}
-      </ScrollView>
+        ) : null}
+      </VirtualList>
 
       {showBackTop && (
         <View className='back-top' onClick={handleBackTop}>

@@ -25,8 +25,8 @@ interface CustomGridProps {
 const AppGrid: React.FC<CustomGridProps> = ({
   data = [],
   column = 4,
-  imageWidth = "88rpx",
-  imageHeight = "88rpx",
+  imageWidth = "60rpx",
+  imageHeight = "60rpx",
   fontSize = "16rpx",       // 设置大字体
   textColor = '#333333',  // 默认字体颜色
   gap = '2rpx',
@@ -45,7 +45,7 @@ const AppGrid: React.FC<CustomGridProps> = ({
     <View className={`custom-grid ${className}`} style={{ padding: gap }}>
       {data.map((item, index) => (
         <View
-          key={index}
+          key={item.pagePath || item.value || index}
           className="custom-grid__item"
           style={{
             width: itemWidth,
@@ -57,7 +57,7 @@ const AppGrid: React.FC<CustomGridProps> = ({
           <View className="custom-grid__image-wrapper">
             <Image
               src={item.image}
-              mode="aspectFill"
+              mode="aspectFit"
               style={{
                 width: imageWidth,
                 height: imageHeight,

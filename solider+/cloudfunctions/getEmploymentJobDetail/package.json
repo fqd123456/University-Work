@@ -1,0 +1,9 @@
+{
+  "name": "getEmploymentJobDetail",
+  "version": "1.0.0",
+  "description": "获取就业岗位详情",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

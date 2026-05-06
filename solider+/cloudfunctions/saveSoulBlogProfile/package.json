@@ -1,0 +1,9 @@
+{
+  "name": "saveSoulBlogProfile",
+  "version": "1.0.0",
+  "description": "保存军魂记录资料",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "advanceTrainingRegistrationStage",
+  "version": "1.0.0",
+  "description": "推进培训报名状态到待开班",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

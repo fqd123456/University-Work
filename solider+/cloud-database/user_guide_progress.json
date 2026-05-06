@@ -1,0 +1,9 @@
+[
+  {
+    "_id": "guide_progress_template_001",
+    "userId": "__template__",
+    "regionId": "jx_fuzhou",
+    "completedStepIds": ["report", "insurance"],
+    "updatedAt": "2026-03-28 19:30"
+  }
+]

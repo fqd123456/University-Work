@@ -1,286 +1,344 @@
 .ai-page {
-  /* 关键 1: 占满全屏高度 */
-  height: 100vh; 
-  /* 关键 2: 开启 Flex 布局，垂直排列 */
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(255, 226, 202, 0.8) 0, rgba(255, 226, 202, 0) 32%),
+    linear-gradient(180deg, #f6eee5 0%, #f3f5f8 42%, #eef2f6 100%);
+  color: #1f2937;
+  overflow: hidden;
+}
+
+.ai-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 28rpx;
+  padding-right: 28rpx;
+  padding-bottom: 14rpx;
+  background: linear-gradient(135deg, #8f3c2f 0%, #b8563f 48%, #d57b55 100%);
+  color: #ffffff;
+  box-shadow: 0 16rpx 34rpx rgba(143, 60, 47, 0.2);
+}
+
+.ai-header-main {
   display: flex;
   flex-direction: column;
-  --tabbar-height: 100rpx;
-  
-  background: linear-gradient(180deg, #f8dfe7 0%, #f1e7f4 45%, #f6f4f9 100%);
-  font-family: "PingFang SC", "Source Han Sans SC", "Helvetica Neue", sans-serif;
-  color: #2b2f36;
-  overflow: hidden; /* 防止页面整体出现滚动条 */
-  padding: 0; 
-  box-sizing: border-box;
-}
-
-.ai-title-wrap {
-  flex-shrink: 0; /* 防止被压缩 */
-  display: flex;
-  align-items: center;
-  height: 98rpx; 
-  width: 100%;
-  padding: 0 32rpx; /* 调整 padding，让内容垂直居中更自然 */
-  padding-top: 80rpx;
-
-  background: #a34444;
-  color: #ffffff;
-  box-shadow: 0 4rpx 12rpx rgba(163, 68, 68, 0.15);
-}
-
-.ai-title {
-  display: flex;
-  font-size: 34rpx;
-  font-weight: 700;
-}
-
-.ai-help {
-  width: 24rpx;
-  height: 24rpx;
-  border-radius: 50%;
-  margin-top: 10rpx;
-  margin-left: 16rpx;
-  border: 1rpx solid #ffffff;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 18rpx;
-  background-color: rgba(255,255,255,0.2); /* 稍微加点背景让问号更清晰 */
+  padding: 4rpx 0 0;
 }
 
-.ai-scroll-area {
-  /* 【关键 3】自动占据 Header 和 Footer 之间的所有剩余空间 */
-  flex: 1;
-  width: 100%;
-  overflow: hidden; /* 隐藏原生滚动条，由 ScrollView 接管 */
-  min-height: 0;
-  
-  .ai-scroll-content {
-    padding: 24rpx;
-    display: flex;
-    flex-direction: column;
-    /* 如果内容很少，gap 可以保证间距；如果内容多，正常滚动 */
-    gap: 24rpx; 
-  }
-}
-
-.ai-welcome-card {
+.ai-header-title-row {
   display: flex;
+  align-items: center;
   gap: 16rpx;
-  padding: 20rpx;
-  border-radius: 20rpx;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 16rpx 28rpx rgba(123, 76, 115, 0.18);
-  margin-bottom: 20rpx;
 }
 
-.ai-mascot {
-  width: 92rpx;
-  height: 92rpx;
-  border-radius: 24rpx;
-  background: linear-gradient(135deg, #ff8aa6 0%, #ff6c8f 70%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.ai-header-title {
+  display: block;
+  font-size: 40rpx;
   font-weight: 700;
-  color: #ffffff;
-  font-size: 26rpx;
-  box-shadow: inset 0 0 10rpx rgba(255, 255, 255, 0.4);
+  letter-spacing: 2rpx;
 }
 
-.ai-welcome-content {
-  flex: 1;
-}
-
-.ai-welcome-text {
-  font-size: 26rpx;
-  line-height: 38rpx;
-  color: #3f3a44;
-}
-
-.ai-welcome-actions {
-  margin-top: 14rpx;
-  display: flex;
-  gap: 12rpx;
-}
-
-.ai-section {
-  padding: 0 32rpx;
-  margin-top: 12rpx;
-}
-
-.ai-section-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14rpx;
-  margin: 20rpx 0 16rpx;
-}
-
-.ai-divider {
-  flex: 1;
-  height: 2rpx;
-  background: rgba(128, 128, 144, 0.2);
-}
-
-.ai-section-text {
-  font-size: 24rpx;
-  color: #8b8b97;
-}
-
-.ai-feedback {
-  margin: 18rpx 32rpx 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #9a98a5;
+.ai-header-subtitle {
+  display: block;
+  margin-top: 6rpx;
   font-size: 22rpx;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.86);
 }
 
-.ai-feedback-actions {
-  display: flex;
-  gap: 12rpx;
-}
-
-.ai-feedback-btn {
-  padding: 6rpx 16rpx;
-  border-radius: 999rpx;
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
-  font-size: 22rpx;
-  color: #8a8d94;
-}
-
-.ai-chat-card {
-  margin: 18rpx 32rpx 0;
-  padding: 20rpx;
-  border-radius: 20rpx;
-  background: #ffffff;
-  box-shadow: 0 16rpx 28rpx rgba(123, 76, 115, 0.12);
-}
-
-.ai-chat-text {
-  font-size: 26rpx;
-  color: #3a3a42;
-  line-height: 38rpx;
-}
-
-.ai-chat-actions {
-  margin-top: 14rpx;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12rpx;
-}
-
-.ai-chat-chip {
+.ai-header-reset {
+  margin-top: 0;
   padding: 10rpx 20rpx;
   border-radius: 999rpx;
-  background: #f5f6fa;
-  color: #4b5563;
+  background: rgba(255, 255, 255, 0.14);
   font-size: 24rpx;
+  color: #ffffff;
 }
 
-.bottom {
+.ai-header-reset-disabled {
+  opacity: 0.5;
+}
+
+.ai-scope-card {
+  margin-bottom: 24rpx;
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18rpx 40rpx rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(12rpx);
+}
+
+.ai-scope-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #293241;
+}
+
+.ai-scope-tags {
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 150rpx;
-  box-sizing: border-box;
-  gap: 12rpx;
+  flex-wrap: wrap;
+  gap: 14rpx;
+  margin-top: 18rpx;
 }
 
-/* --- 横向滚动容器 (ScrollView) --- */
-.ai-chips-scroll {
-  width: 100%;
-  /* 关键：限制高度，防止内部内容撑开导致多行 */
-  height: 80rpx; /* 根据 chip 的高度 + padding 调整，略大一点以防阴影被切 */
-  
-  /* 隐藏滚动条的通用写法 (部分小程序可能需要特定属性) */
-  ::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-  }
-}
-
-/* --- Chips 内容区 --- */
-.ai-chips {
-  /* 关键 1: 移除 flex-wrap，强制一行 */
-  display: flex;
-  flex-wrap: nowrap; 
-  
-  /* 关键 2: 宽度设为自适应或足够大，配合 white-space */
-  width: max-content; 
-  padding-left: 8rpx; 
-  padding-right: 8rpx;
-  
-  gap: 12rpx;
-  align-items: center;
-}
-
-.ai-chip {
-  /* 关键 3: 防止文字换行 */
-  white-space: nowrap;
-  
-  padding: 10rpx 22rpx;
+.ai-scope-tag {
+  padding: 10rpx 18rpx;
   border-radius: 999rpx;
-  background: rgba(255, 255, 255, 0.9);
-  color: #3c3c44;
+  background: #f6e7dc;
+  color: #9c4f35;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.ai-scope-note {
+  display: block;
+  margin-top: 18rpx;
   font-size: 24rpx;
-  box-shadow: 0 10rpx 18rpx rgba(123, 76, 115, 0.1);
-  
-  /* 可选：添加点击态 */
+  line-height: 1.7;
+  color: #667085;
+}
+
+.ai-chat-scroll {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.ai-chat-content {
+  padding: 8rpx 24rpx 24rpx;
+  box-sizing: border-box;
+}
+
+.ai-quick-card {
+  margin-bottom: 24rpx;
+  padding: 24rpx;
+  border-radius: 22rpx;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 12rpx 24rpx rgba(148, 163, 184, 0.12);
+}
+
+.ai-quick-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #334155;
+}
+
+.ai-quick-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+  margin-top: 18rpx;
+}
+
+.ai-quick-item {
+  padding: 14rpx 18rpx;
+  border-radius: 18rpx;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 24rpx;
+  color: #475569;
+
   &:active {
-    opacity: 0.7;
     transform: scale(0.98);
   }
 }
 
-.ai-input-bar {
-  margin: 0 24rpx calc(24rpx + var(--tabbar-height) + env(safe-area-inset-bottom));
-  background: #ffffff;
-  border-radius: 999rpx;
-  padding: 8rpx 16rpx;
-  display: flex;
-  align-items: center;
-  gap: 12rpx;
-  box-shadow: 0 16rpx 28rpx rgba(0, 0, 0, 0);
+.ai-quick-item-disabled {
+  opacity: 0.55;
 }
 
-.ai-input-icon,
-.ai-send,
-.ai-plus {
-  width: 56rpx;
-  height: 56rpx;
-  border-radius: 50%;
+.ai-message-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  margin-bottom: 22rpx;
+}
+
+.ai-message-row-assistant {
+  justify-content: flex-start;
+}
+
+.ai-message-row-user {
+  justify-content: flex-end;
+}
+
+.ai-avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24rpx;
-  font-weight: 600;
+  flex-shrink: 0;
+  font-size: 22rpx;
+  font-weight: 700;
 }
 
-.ai-input-icon {
-  background: #f3f4f6;
-  color: #9a98a5;
+.ai-avatar-assistant {
+  background: linear-gradient(135deg, #f0c5a6 0%, #d9865f 100%);
+  color: #6f2c19;
+  box-shadow: 0 10rpx 18rpx rgba(217, 134, 95, 0.2);
 }
 
-.ai-send {
-  background: #ff7ba6;
+.ai-avatar-user {
+  background: linear-gradient(135deg, #9b5752 0%, #7d2f2f 100%);
   color: #ffffff;
+  box-shadow: 0 10rpx 18rpx rgba(125, 47, 47, 0.22);
 }
 
-.ai-plus {
-  border: 2rpx solid #d1d5db;
-  color: #6b7280;
+.ai-message-bubble {
+  max-width: 100%;
+  padding: 20rpx 22rpx 18rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 12rpx 24rpx rgba(148, 163, 184, 0.14);
+}
+
+.ai-message-stack {
+  display: flex;
+  flex-direction: column;
+  max-width:80%;
+}
+
+.ai-message-bubble-assistant {
+  background: rgba(255, 255, 255, 0.96);
+  border-top-left-radius: 8rpx;
+}
+
+.ai-message-bubble-user {
+  background: linear-gradient(135deg, #9c4331 0%, #bf654a 100%);
+  color: #ffffff;
+  border-top-right-radius: 8rpx;
+}
+
+.ai-message-bubble-error {
+  background: #fff1f2;
+  color: #b42318;
+  border: 1px solid #fecdd3;
+}
+
+.ai-message-bubble-pending {
+  background: #fffaf0;
+  border: 1px solid #f2d2aa;
+}
+
+.ai-message-text {
+  display: block;
+  font-size: 28rpx;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ai-message-meta {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: rgba(100, 116, 139, 0.88);
+}
+
+.ai-message-bubble-user .ai-message-meta {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.ai-message-bubble-error .ai-message-meta {
+  color: rgba(180, 35, 24, 0.72);
+}
+
+.ai-message-note {
+  display: block;
+  margin-top: 10rpx;
+  padding: 0 8rpx;
+  font-size: 22rpx;
+  line-height: 1.6;
+  color: #98a2b3;
+}
+
+.ai-bottom-anchor {
+  height: 4rpx;
+}
+
+.ai-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  padding: 8rpx 18rpx 0;
+  background: linear-gradient(180deg, rgba(243, 245, 248, 0) 0%, rgba(243, 245, 248, 0.92) 24%, #f3f5f8 100%);
+}
+
+.ai-chip-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.ai-chip-list {
+  display: inline-flex;
+  gap: 12rpx;
+  padding: 6rpx 6rpx 8rpx;
+}
+
+.ai-chip {
+  white-space: nowrap;
+  padding: 12rpx 20rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e2e8f0;
+  font-size: 24rpx;
+  color: #475569;
+  box-shadow: 0 10rpx 18rpx rgba(148, 163, 184, 0.12);
+}
+
+.ai-chip-disabled {
+  opacity: 0.55;
+}
+
+.ai-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 12rpx 14rpx 12rpx 20rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20rpx 34rpx rgba(148, 163, 184, 0.18);
 }
 
 .ai-input {
   flex: 1;
-  font-size: 26rpx;
-  color: #2b2f36;
+  min-width: 0;
+  height: 72rpx;
+  font-size: 28rpx;
+  color: #1f2937;
 }
 
 .ai-input-placeholder {
-  color: #b2b4bc;
+  color: #98a2b3;
+}
+
+.ai-send-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 132rpx;
+  height: 68rpx;
+  padding: 0 24rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, #8f3c2f 0%, #bf654a 100%);
+  color: #ffffff;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.ai-send-btn-disabled {
+  background: #d0d5dd;
+  color: #ffffff;
 }

@@ -1,0 +1,167 @@
+.annual-review-page {
+  min-height: 100vh;
+  padding: 24rpx 24rpx 48rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top right, rgba(255, 220, 209, 0.9) 0, rgba(255, 220, 209, 0) 30%),
+    linear-gradient(180deg, #f8f2ee 0%, #f3f6fa 44%, #eef3f8 100%);
+}
+
+.annual-review-hero {
+  padding: 30rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(135deg, #8f3c2f 0%, #bf654a 48%, #df9163 100%);
+  color: #ffffff;
+  box-shadow: 0 20rpx 40rpx rgba(143, 60, 47, 0.18);
+}
+
+.annual-review-status {
+  display: inline-flex;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 22rpx;
+}
+
+.annual-review-title {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.annual-review-desc {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 25rpx;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.annual-review-card {
+  margin-top: 24rpx;
+  padding: 26rpx 28rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14rpx 30rpx rgba(148, 163, 184, 0.12);
+}
+
+.annual-review-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+  margin-bottom: 10rpx;
+}
+
+.annual-review-section-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #24303d;
+}
+
+.annual-review-section-subtitle {
+  font-size: 22rpx;
+  color: #8b96a8;
+}
+
+.annual-review-field {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.annual-review-field:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.annual-review-field-column {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.annual-review-label-wrap {
+  display: flex;
+  align-items: center;
+  min-width: 178rpx;
+}
+
+.annual-review-label {
+  font-size: 26rpx;
+  color: #24303d;
+}
+
+.annual-review-required {
+  margin-left: 6rpx;
+  font-size: 26rpx;
+  color: #d94841;
+}
+
+.annual-review-control {
+  flex: 1;
+  width: 100%;
+}
+
+.annual-review-input,
+.annual-review-picker {
+  width: 100%;
+  min-height: 44rpx;
+  font-size: 26rpx;
+  color: #1f2937;
+  text-align: right;
+}
+
+.annual-review-picker {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #98a2b3;
+}
+
+.annual-review-picker-value {
+  color: #1f2937;
+}
+
+.annual-review-textarea {
+  width: 100%;
+  min-height: 180rpx;
+  padding: 20rpx;
+  border-radius: 18rpx;
+  background: #f8fafc;
+  font-size: 26rpx;
+  color: #1f2937;
+  box-sizing: border-box;
+}
+
+.annual-review-tips {
+  background: linear-gradient(180deg, #fff9f3 0%, #fff 100%);
+}
+
+.annual-review-tip-item {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #6b7280;
+}
+
+.annual-review-submit {
+  margin-top: 26rpx;
+  height: 96rpx;
+  border-radius: 18rpx;
+  background: linear-gradient(135deg, #8f3c2f 0%, #bf654a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18rpx 30rpx rgba(143, 60, 47, 0.18);
+}
+
+.annual-review-submit-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #ffffff;
+}

@@ -1,0 +1,293 @@
+.training-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 48rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top left, rgba(177, 77, 52, 0.12) 0, rgba(177, 77, 52, 0) 30%),
+    linear-gradient(180deg, #faf6f1 0%, #f5efe7 100%);
+}
+
+.training-location-card,
+.training-status-card,
+.training-section,
+.training-empty-card {
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 20rpx 40rpx rgba(111, 77, 63, 0.1);
+}
+
+.training-status-action,
+.training-section-action,
+.training-chip,
+.training-program-category,
+.training-location-policy-btn-text {
+  display: inline-flex;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.training-location-note,
+.training-status-desc,
+.training-policy-summary,
+.training-support-desc,
+.training-policy-note,
+.training-module-desc,
+.training-section-subtitle,
+.training-program-provider,
+.training-program-meta,
+.training-empty-desc {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+.training-location-card,
+.training-status-card,
+.training-section,
+.training-empty-card {
+  margin-top: 24rpx;
+  padding: 28rpx 26rpx;
+}
+
+.training-location-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.training-location-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.training-location-policy-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 176rpx;
+  height: 68rpx;
+  margin-top: 6rpx;
+  padding: 0 20rpx;
+  border-radius: 999rpx;
+  background: rgba(139, 54, 54, 0.08);
+}
+
+.training-location-policy-btn-text {
+  color: #8b3636;
+}
+
+.training-section-label,
+.training-status-title,
+.training-card-title,
+.training-empty-title,
+.training-support-title,
+.training-module-title,
+.training-program-title {
+  display: block;
+  color: #382521;
+}
+
+.training-section-label,
+.training-status-title,
+.training-card-title,
+.training-empty-title {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.training-location-province {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 42rpx;
+  font-weight: 700;
+  color: #8a3927;
+}
+
+.training-location-city {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: #7b645d;
+}
+
+.training-location-note,
+.training-status-desc,
+.training-policy-note,
+.training-section-subtitle,
+.training-program-provider,
+.training-program-meta,
+.training-empty-desc {
+  color: #8a736d;
+}
+
+.training-status-card-error {
+  border: 1px solid rgba(139, 54, 54, 0.12);
+}
+
+.training-status-action {
+  margin-top: 16rpx;
+  color: #8b3636;
+}
+
+.training-policy-title {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #382521;
+}
+
+.training-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 18rpx;
+}
+
+.training-chip {
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  color: #8a3927;
+  background: rgba(138, 57, 39, 0.08);
+}
+
+.training-support-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16rpx;
+  margin-top: 22rpx;
+}
+
+.training-support-item {
+  padding: 22rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(180deg, #fffaf8 0%, #f8f1eb 100%);
+}
+
+.training-support-title {
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.training-module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18rpx;
+  margin-top: 24rpx;
+}
+
+.training-module-card {
+  padding: 28rpx 24rpx;
+  border-radius: 30rpx;
+  box-shadow: 0 14rpx 30rpx rgba(111, 77, 63, 0.08);
+}
+
+.training-module-card-primary {
+  background: linear-gradient(145deg, #8a3927 0%, #af5939 100%);
+}
+
+.training-module-card-secondary {
+  background: linear-gradient(145deg, #f9f1ea 0%, #fff8f4 100%);
+}
+
+.training-module-card-primary .training-module-title,
+.training-module-card-primary .training-module-desc,
+.training-module-card-primary .training-module-metric {
+  color: #ffffff;
+}
+
+.training-module-card-secondary .training-module-title {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.training-module-card-secondary .training-module-desc {
+  color: #715f5b;
+}
+
+.training-module-metric {
+  display: inline-flex;
+  margin-top: 20rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.training-module-card-primary .training-module-metric {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.training-module-card-secondary .training-module-metric {
+  color: #8a3927;
+  background: rgba(138, 57, 39, 0.08);
+}
+
+.training-section-head,
+.training-program-head,
+.training-program-foot {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18rpx;
+}
+
+.training-section-action {
+  padding-top: 8rpx;
+  color: #8b3636;
+}
+
+.training-program-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+  margin-top: 20rpx;
+}
+
+.training-program-card {
+  padding: 26rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(180deg, #ffffff 0%, #fdfaf7 100%);
+  border: 1px solid rgba(138, 57, 39, 0.08);
+}
+
+.training-program-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.training-program-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.training-program-count {
+  flex-shrink: 0;
+  padding-top: 4rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #8a3927;
+}
+
+.training-program-category {
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  color: #8a3927;
+  background: rgba(138, 57, 39, 0.08);
+}
+
+.training-program-link {
+  padding-top: 8rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #8b3636;
+}
+
+.training-empty-card {
+  text-align: center;
+}

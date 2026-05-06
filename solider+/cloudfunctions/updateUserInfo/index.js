@@ -4,14 +4,40 @@ const db = cloud.database()
 
 exports.main = async (event) => {
   const { OPENID } = cloud.getWXContext()
-  const { nickname, avatar } = event || {}
+  const {
+    nickname,
+    avatar,
+    realName,
+    gender,
+    serviceRegion,
+    birthDate,
+    bio,
+  } = event || {}
 
   const updateData = {}
-  if (typeof nickname === 'string' && nickname.trim()) {
-    updateData.nickname = nickname.trim()
+  if (typeof nickname === 'string') {
+    const nextNickname = nickname.trim()
+    if (nextNickname) {
+      updateData.nickname = nextNickname
+    }
   }
-  if (typeof avatar === 'string' && avatar) {
+  if (typeof avatar === 'string') {
     updateData.avatar = avatar
+  }
+  if (typeof realName === 'string') {
+    updateData.real_name = realName.trim()
+  }
+  if (typeof gender === 'string') {
+    updateData.gender = gender.trim()
+  }
+  if (typeof serviceRegion === 'string') {
+    updateData.service_region = serviceRegion.trim()
+  }
+  if (typeof birthDate === 'string') {
+    updateData.birth_date = birthDate.trim()
+  }
+  if (typeof bio === 'string') {
+    updateData.bio = bio.trim()
   }
 
   if (Object.keys(updateData).length === 0) {
@@ -21,6 +47,13 @@ exports.main = async (event) => {
   try {
     await db.collection('users').doc(OPENID).update({
       data: updateData
+    }).catch(async () => {
+      await db.collection('users').add({
+        data: {
+          _id: OPENID,
+          ...updateData,
+        }
+      })
     })
     const userRes = await db.collection('users').doc(OPENID).get()
     return { success: true, data: userRes.data }

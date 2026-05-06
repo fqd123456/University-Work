@@ -1,0 +1,247 @@
+.entrepreneurship-page {
+  min-height: 100vh;
+  padding: 24rpx 24rpx 48rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top right, rgba(139, 54, 54, 0.08) 0, rgba(139, 54, 54, 0) 30%),
+    linear-gradient(180deg, #f7f1ef 0%, #f5f3f1 100%);
+}
+
+.entrepreneurship-hero {
+  padding: 28rpx;
+  border-radius: 32rpx;
+  background: linear-gradient(135deg, #6e2525 0%, #8b3636 48%, #ab5b57 100%);
+  box-shadow: 0 18rpx 34rpx rgba(139, 54, 54, 0.18);
+}
+
+.entrepreneurship-hero-region {
+  margin-top: 24rpx;
+  padding: 22rpx 24rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.entrepreneurship-hero-region-label,
+.entrepreneurship-hero-region-value {
+  display: block;
+}
+
+.entrepreneurship-hero-region-label {
+  font-size: 22rpx;
+  color: rgba(255, 246, 244, 0.78);
+}
+
+.entrepreneurship-hero-region-value {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.entrepreneurship-status-card,
+.entrepreneurship-section {
+  margin-top: 24rpx;
+  padding: 28rpx;
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12rpx 28rpx rgba(110, 74, 70, 0.08);
+}
+
+.entrepreneurship-status-card-error {
+  border: 1px solid rgba(139, 54, 54, 0.16);
+}
+
+.entrepreneurship-status-title,
+.entrepreneurship-section-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #2f1f1f;
+}
+
+.entrepreneurship-status-desc,
+.entrepreneurship-section-subtitle {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #7b6765;
+}
+
+.entrepreneurship-status-action {
+  display: inline-flex;
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #8b3636;
+}
+
+.entrepreneurship-module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18rpx;
+  margin-top: 24rpx;
+}
+
+.entrepreneurship-module-card {
+  padding: 26rpx;
+  border-radius: 28rpx;
+  color: #ffffff;
+  box-shadow: 0 12rpx 26rpx rgba(110, 74, 70, 0.08);
+}
+
+.entrepreneurship-module-card-primary {
+  background: linear-gradient(145deg, #8b3636 0%, #b45b52 100%);
+}
+
+.entrepreneurship-module-card-secondary {
+  background: linear-gradient(145deg, #f2e7e6 0%, #f8f3f2 100%);
+  color: #5a3131;
+}
+
+.entrepreneurship-module-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.entrepreneurship-module-desc {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  line-height: 1.7;
+  color: inherit;
+  opacity: 0.9;
+}
+
+.entrepreneurship-module-metric {
+  display: inline-flex;
+  margin-top: 20rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.entrepreneurship-module-card-secondary .entrepreneurship-module-metric {
+  background: rgba(139, 54, 54, 0.08);
+}
+
+.entrepreneurship-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18rpx;
+}
+
+.entrepreneurship-section-count {
+  padding-top: 8rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #8b3636;
+}
+
+.entrepreneurship-company-list {
+  margin-top: 22rpx;
+}
+
+.entrepreneurship-company-card {
+  padding: 26rpx;
+  margin-bottom: 18rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(180deg, #ffffff 0%, #fcfbfb 100%);
+  border: 1px solid rgba(139, 54, 54, 0.08);
+}
+
+.entrepreneurship-company-card:last-child {
+  margin-bottom: 0;
+}
+
+.entrepreneurship-company-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.entrepreneurship-company-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.entrepreneurship-company-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 1.38;
+  color: #2f1f1f;
+}
+
+.entrepreneurship-company-founder {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #786868;
+}
+
+.entrepreneurship-company-industry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #8b3636;
+  background: rgba(139, 54, 54, 0.08);
+}
+
+.entrepreneurship-company-intro {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  line-height: 1.8;
+  color: #5f504f;
+}
+
+.entrepreneurship-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 18rpx;
+}
+
+.entrepreneurship-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  color: #8b3636;
+  background: rgba(139, 54, 54, 0.08);
+}
+
+.entrepreneurship-company-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  margin-top: 20rpx;
+}
+
+.entrepreneurship-company-foot-text,
+.entrepreneurship-company-link {
+  font-size: 22rpx;
+}
+
+.entrepreneurship-company-foot-text {
+  color: #8b7574;
+}
+
+.entrepreneurship-company-link {
+  font-weight: 700;
+  color: #8b3636;
+}

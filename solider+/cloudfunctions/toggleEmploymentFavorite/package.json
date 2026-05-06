@@ -1,0 +1,9 @@
+{
+  "name": "toggleEmploymentFavorite",
+  "version": "1.0.0",
+  "description": "切换就业岗位或招聘活动关注状态",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

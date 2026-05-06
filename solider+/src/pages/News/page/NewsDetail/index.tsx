@@ -1,6 +1,7 @@
 import { View, Text } from '@tarojs/components'
 import { useCallback, useEffect, useState } from 'react'
 import Taro from '@tarojs/taro'
+import LightLoading from '../../../../components/LightLoading'
 import {
   NEWS_CURRENT_ITEM_KEY,
   NEWS_DETAIL_CACHE_KEY,
@@ -138,7 +139,7 @@ const NewsDetail = () => {
       </View>
       <View className='content'>
         {loading && (
-          <Text className='status-text'>正在加载正文...</Text>
+          <LightLoading text='正在加载正文...' />
         )}
         {!loading && content.length === 0 && (
           <Text className='status-text'>暂无正文内容</Text>

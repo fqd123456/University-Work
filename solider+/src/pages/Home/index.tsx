@@ -1,7 +1,18 @@
-import { View, Text, } from '@tarojs/components'
-import Taro from '@tarojs/taro'
+import { View, Text } from '@tarojs/components'
+import { useState } from 'react'
+import Taro, { useDidShow } from '@tarojs/taro'
 import CustomNav from '../../components/HomeNav'
-import AppGrid from '../../components/AppGrid'
+import AppGrid, { GridItem } from '../../components/AppGrid'
+import { getRecentHomeServices, recordRecentService, ServiceItem } from '../Service/serviceDate'
+import { ensureProtectedPageAccess } from '../../utils/auth'
+import {
+  GuideStep,
+  guideSteps,
+  getGuideCompletionMap,
+  getGuideRegionId,
+  loadRegionalGuideSteps,
+  syncGuideCompletionMap,
+} from './guideData'
 import './index.scss'
 
 const Mine = () => {
@@ -11,50 +22,39 @@ const Mine = () => {
     { id: 2, title: '全市退役军人专场招聘会圆满结束' },
     { id: 3, title: '关于开展志愿服务活动的通知' }
   ];
-  // 指引步骤
-  const items = [
-    { 'title': '报道', 'desc': '退役军人事务局' },
-    { 'title': '保险', 'desc': '社保局' },
-    { 'title': '培训', 'desc': '退役军人事务局（可选）' },
-    { 'title': '组织关系转移', 'desc': '人民政府' },
-    { 'title': '优待证', 'desc': '退役军人服务站' },
-  ]
+  const [completedMap, setCompletedMap] = useState<Record<string, boolean>>(() => getGuideCompletionMap())
+  const [items, setItems] = useState<GuideStep[]>(guideSteps)
+  const [serviceData, setServiceData] = useState<GridItem[]>(() => getRecentHomeServices())
+  const completedCount = items.filter(item => completedMap[item.id]).length
+  const isAllCompleted = completedCount === items.length
+  const firstPendingStep = items.find(item => !completedMap[item.id])
+  const lastStep = items.length ? items[items.length - 1] : null
+  const activeStepId = firstPendingStep ? firstPendingStep.id : lastStep ? lastStep.id : ''
+  const serviceGridKey = serviceData.map((item) => item.pagePath || item.value).join('|')
 
-  const serviceData =
-    [
-      {
-        image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
-        value: '逐月领取退役金退役军人年审'
-      },
-      {
-        image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
-        value: '就业服务'
-      },
-      {
-        image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-        value: '自主择业军转干部年审'
-      },
-      {
-        image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
-        value: '军休干部年审'
-      },
-      {
-        image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
-        value: '无军籍退休职工年审'
-      },
-      {
-        image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
-        value: '创业扶持'
-      },
-      {
-        image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
-        value: '企业军转干部年审'
-      },
-      {
-        image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
-        value: '查看更多'
-      },
-    ]
+  useDidShow(() => {
+    const loadGuideData = async () => {
+      const regionId = getGuideRegionId()
+      const [nextItems, nextCompletedMap] = await Promise.all([
+        loadRegionalGuideSteps(regionId),
+        syncGuideCompletionMap(regionId),
+      ])
+      const nextServices = getRecentHomeServices()
+
+      setItems(nextItems)
+      setCompletedMap(nextCompletedMap)
+      setServiceData(nextServices)
+      console.log('[recent-service] Home useDidShow', {
+        regionId,
+        nextServices: nextServices.map((item) => ({
+          value: item.value,
+          pagePath: item.pagePath || '',
+        })),
+      })
+    }
+
+    void loadGuideData()
+  })
 
   return (
     <View className='mainPage'>
@@ -75,26 +75,46 @@ const Mine = () => {
       </View>
 
       {/* 退伍指引 */}
-      <View className='card'>
-        <View className='itemTitle'>
-          <Text className='itemLeft'>退伍指引</Text>
-        </View>
-        <View className='guide-steps'>
-          {items.map((item, index) => (
-            <View key={item.title} className='guide-step'>
-              <View className='guide-step-top'>
-                {index > 0 ? <View className='guide-step-line' /> : <View className='guide-step-line guide-step-line-hidden' />}
-                <View className={`guide-step-circle ${index === 0 ? 'guide-step-circle-active' : ''}`}>
-                  <Text className='guide-step-num'>{index + 1}</Text>
+      {!isAllCompleted && (
+        <View className='card'>
+          <View className='itemTitle'>
+            <Text className='itemLeft'>退伍指引</Text>
+            <Text className='itemRight'>{completedCount}/{items.length} 已完成</Text>
+          </View>
+          <View className='guide-steps'>
+            {items.map((item, index) => (
+              <View
+                key={item.id}
+                className='guide-step'
+                onClick={() => Taro.navigateTo({ url: `/pages/Home/page/GuideDetail/index?step=${item.id}` })}
+              >
+                <View className='guide-step-top'>
+                  {index > 0 ? <View className='guide-step-line' /> : <View className='guide-step-line guide-step-line-hidden' />}
+                  <View
+                    className={[
+                      'guide-step-circle',
+                      completedMap[item.id] ? 'guide-step-circle-completed' : '',
+                      !completedMap[item.id] && item.id === activeStepId ? 'guide-step-circle-active' : ''
+                    ].filter(Boolean).join(' ')}
+                  >
+                    <Text className='guide-step-num'>{index + 1}</Text>
+                  </View>
+                  {index < items.length - 1 ? <View className='guide-step-line' /> : <View className='guide-step-line guide-step-line-hidden' />}
                 </View>
-                {index < items.length - 1 ? <View className='guide-step-line' /> : <View className='guide-step-line guide-step-line-hidden' />}
+                <Text
+                  className={[
+                    'guide-step-title',
+                    item.id === activeStepId ? 'guide-step-title-active' : ''
+                  ].filter(Boolean).join(' ')}
+                >
+                  {item.title}
+                </Text>
+                <Text className='guide-step-desc'>{item.desc}</Text>
               </View>
-              <Text className={`guide-step-title ${index === 0 ? 'guide-step-title-active' : ''}`}>{item.title}</Text>
-              <Text className='guide-step-desc'>{item.desc}</Text>
-            </View>
-          ))}
+            ))}
+          </View>
         </View>
-      </View>
+      )}
 
       {/* 常用服务 */}
       <View className='card'>
@@ -103,8 +123,33 @@ const Mine = () => {
         </View>
         {/* 点击进入相关页面 */}
         <AppGrid
+          key={serviceGridKey}
           data={serviceData}
           column={4}
+          onClick={(item: GridItem) => {
+            if (item.pagePath) {
+              if (!ensureProtectedPageAccess(item.pagePath)) {
+                return
+              }
+
+              recordRecentService(item as ServiceItem)
+              const nextServices = getRecentHomeServices()
+              setServiceData(nextServices)
+              console.log('[recent-service] Home onClick', {
+                clicked: item.value,
+                nextServices: nextServices.map((service) => ({
+                  value: service.value,
+                  pagePath: service.pagePath || '',
+                })),
+              })
+              Taro.navigateTo({ url: item.pagePath })
+              return
+            }
+
+            if (item.value === '查看更多') {
+              Taro.switchTab({ url: '/pages/Service/index' })
+            }
+          }}
         />
       </View>
     </View>

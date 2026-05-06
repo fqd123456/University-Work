@@ -1,0 +1,450 @@
+.employment-page {
+  min-height: 100vh;
+  padding: 32rpx 24rpx 48rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top left, rgba(223, 245, 234, 0.9) 0, rgba(223, 245, 234, 0) 28%),
+    linear-gradient(180deg, #f7f8f4 0%, #f3f4ee 100%);
+}
+
+.employment-page-header {
+  padding: 8rpx 4rpx 0;
+}
+
+.employment-page-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1f2b24;
+}
+
+.employment-page-subtitle {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #708173;
+}
+
+.employment-status-card {
+  margin-top: 28rpx;
+  padding: 28rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12rpx 28rpx rgba(69, 84, 71, 0.08);
+}
+
+.employment-status-card-error {
+  border: 1px solid rgba(194, 81, 66, 0.16);
+}
+
+.employment-status-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #24302a;
+}
+
+.employment-status-desc {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #6c7a70;
+}
+
+.employment-status-action {
+  display: inline-flex;
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #189b67;
+}
+
+.employment-entry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18rpx;
+  margin-top: 28rpx;
+}
+
+.employment-entry-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 244rpx;
+  padding: 30rpx 18rpx 24rpx;
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14rpx 28rpx rgba(81, 92, 83, 0.08);
+  box-sizing: border-box;
+}
+
+.employment-entry-icon {
+  position: relative;
+  width: 94rpx;
+  height: 94rpx;
+  border-radius: 50%;
+  background: #e5f5ec;
+}
+
+.employment-entry-title {
+  display: block;
+  margin-top: 28rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #314038;
+  text-align: center;
+}
+
+.employment-entry-summary {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 20rpx;
+  line-height: 1.5;
+  color: #8a968d;
+  text-align: center;
+}
+
+.employment-icon-briefcase-handle {
+  position: absolute;
+  top: 20rpx;
+  left: 34rpx;
+  width: 26rpx;
+  height: 14rpx;
+  border: 5rpx solid #0d7c47;
+  border-bottom: 0;
+  border-radius: 10rpx 10rpx 0 0;
+  box-sizing: border-box;
+}
+
+.employment-icon-briefcase-body {
+  position: absolute;
+  left: 22rpx;
+  top: 30rpx;
+  width: 50rpx;
+  height: 38rpx;
+  border: 5rpx solid #0d7c47;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+}
+
+.employment-icon-calendar-body {
+  position: absolute;
+  left: 24rpx;
+  top: 26rpx;
+  width: 46rpx;
+  height: 44rpx;
+  border: 5rpx solid #0d7c47;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+}
+
+.employment-icon-calendar-ring {
+  position: absolute;
+  top: 16rpx;
+  width: 8rpx;
+  height: 16rpx;
+  border-radius: 999rpx;
+  background: #0d7c47;
+}
+
+.employment-icon-calendar-ring-left {
+  left: 34rpx;
+}
+
+.employment-icon-calendar-ring-right {
+  right: 34rpx;
+}
+
+.employment-icon-calendar-dot {
+  position: absolute;
+  left: 42rpx;
+  top: 50rpx;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #0d7c47;
+}
+
+.employment-icon-document-body {
+  position: absolute;
+  left: 28rpx;
+  top: 20rpx;
+  width: 38rpx;
+  height: 50rpx;
+  border: 5rpx solid #0d7c47;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+}
+
+.employment-icon-document-fold {
+  position: absolute;
+  right: 28rpx;
+  top: 20rpx;
+  width: 14rpx;
+  height: 14rpx;
+  border-top: 5rpx solid #0d7c47;
+  border-right: 5rpx solid #0d7c47;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.employment-icon-document-line {
+  position: absolute;
+  left: 36rpx;
+  width: 20rpx;
+  height: 4rpx;
+  border-radius: 999rpx;
+  background: #0d7c47;
+}
+
+.employment-icon-document-line-top {
+  top: 42rpx;
+}
+
+.employment-icon-document-line-bottom {
+  top: 54rpx;
+}
+
+.employment-progress-section {
+  margin-top: 42rpx;
+}
+
+.employment-progress-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+  padding: 0 8rpx;
+}
+
+.employment-progress-section-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1f2b24;
+}
+
+.employment-progress-section-action {
+  font-size: 22rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+  color: #13a46d;
+}
+
+.employment-progress-preview-list {
+  margin-top: 22rpx;
+}
+
+.employment-focus-list {
+  margin-top: 22rpx;
+}
+
+.employment-focus-card {
+  margin-bottom: 20rpx;
+  padding: 28rpx;
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14rpx 28rpx rgba(81, 92, 83, 0.08);
+}
+
+.employment-focus-card:last-child {
+  margin-bottom: 0;
+}
+
+.employment-focus-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.employment-focus-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.employment-focus-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #1f2b24;
+}
+
+.employment-focus-subtitle {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #627166;
+}
+
+.employment-focus-meta {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 23rpx;
+  line-height: 1.7;
+  color: #7c877f;
+}
+
+.employment-focus-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(19, 164, 109, 0.12);
+}
+
+.employment-focus-badge-job {
+  background: rgba(19, 164, 109, 0.12);
+}
+
+.employment-focus-badge-end {
+  background: rgba(164, 170, 165, 0.16);
+}
+
+.employment-focus-badge-text {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #0d7c47;
+}
+
+.employment-focus-badge-text-end {
+  color: #7d857f;
+}
+
+.employment-progress-preview-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 28rpx 26rpx 28rpx 30rpx;
+  margin-bottom: 20rpx;
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14rpx 28rpx rgba(81, 92, 83, 0.08);
+  overflow: hidden;
+}
+
+.employment-progress-preview-card:last-child {
+  margin-bottom: 0;
+}
+
+.employment-progress-preview-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10rpx;
+  height: 100%;
+  border-radius: 999rpx;
+}
+
+.employment-progress-preview-card-sent::before {
+  background: #7db2f1;
+}
+
+.employment-progress-preview-card-pending::before {
+  background: #f2d779;
+}
+
+.employment-progress-preview-card-interview::before,
+.employment-progress-preview-card-offer::before {
+  background: #1abb7a;
+}
+
+.employment-progress-preview-main {
+  flex: 1;
+  min-width: 0;
+  padding-left: 18rpx;
+}
+
+.employment-progress-preview-head {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  flex-wrap: wrap;
+}
+
+.employment-progress-preview-job {
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #1f2b24;
+}
+
+.employment-progress-preview-stage {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 20rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.employment-progress-preview-stage-sent {
+  background: rgba(125, 178, 241, 0.18);
+  color: #3f72aa;
+}
+
+.employment-progress-preview-stage-pending {
+  background: rgba(242, 215, 121, 0.22);
+  color: #8d7720;
+}
+
+.employment-progress-preview-stage-interview,
+.employment-progress-preview-stage-offer {
+  background: #65f38f;
+  color: #103a21;
+}
+
+.employment-progress-preview-company {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 26rpx;
+  color: #4b5a51;
+}
+
+.employment-progress-preview-date {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #7d8a81;
+}
+
+.employment-progress-preview-arrow {
+  width: 18rpx;
+  height: 18rpx;
+  border-right: 4rpx solid #7e8d82;
+  border-bottom: 4rpx solid #7e8d82;
+  transform: rotate(-45deg);
+  flex-shrink: 0;
+  margin-right: 8rpx;
+}
+
+.employment-progress-empty-card {
+  margin-top: 22rpx;
+  padding: 34rpx 30rpx;
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14rpx 28rpx rgba(81, 92, 83, 0.08);
+}
+
+.employment-progress-empty-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #27352d;
+}
+
+.employment-progress-empty-desc {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #7b8980;
+}

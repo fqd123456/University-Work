@@ -1,0 +1,10 @@
+{
+  "name": "generateEmploymentResumePdf",
+  "version": "1.0.0",
+  "description": "生成就业服务个人简历 PDF",
+  "main": "index.js",
+  "dependencies": {
+    "pdfkit": "^0.17.2",
+    "wx-server-sdk": "~2.6.3"
+  }
+}

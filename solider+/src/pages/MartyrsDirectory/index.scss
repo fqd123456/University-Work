@@ -1,0 +1,172 @@
+.martyr-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 40rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top right, rgba(139, 54, 54, 0.16) 0, rgba(139, 54, 54, 0) 34%),
+    linear-gradient(180deg, #fbf6f2 0%, #f4eee8 100%);
+}
+
+.martyr-location-card,
+.martyr-search-card,
+.martyr-status-card,
+.martyr-empty-card,
+.martyr-person-card {
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 20rpx 40rpx rgba(97, 65, 58, 0.1);
+}
+
+.martyr-status-action {
+  display: inline-flex;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.martyr-location-note,
+.martyr-section-subtitle,
+.martyr-status-desc,
+.martyr-empty-desc {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+.martyr-location-card,
+.martyr-search-card,
+.martyr-status-card,
+.martyr-empty-card {
+  margin-top: 24rpx;
+  padding: 28rpx 26rpx;
+}
+
+.martyr-location-label,
+.martyr-card-title,
+.martyr-form-label,
+.martyr-section-title,
+.martyr-status-title,
+.martyr-empty-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #2f2323;
+}
+
+.martyr-location-city {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #8b3636;
+}
+
+.martyr-location-region {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #7c6762;
+}
+
+.martyr-location-note,
+.martyr-section-subtitle,
+.martyr-status-desc,
+.martyr-empty-desc {
+  color: #8f7a76;
+}
+
+.martyr-form-group {
+  margin-top: 20rpx;
+}
+
+.martyr-form-input,
+.martyr-picker-field {
+  min-height: 88rpx;
+  margin-top: 14rpx;
+  padding: 0 20rpx;
+  border-radius: 24rpx;
+  background: #f8f3f0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.martyr-form-input {
+  font-size: 26rpx;
+  color: #2f2323;
+}
+
+.martyr-picker-field {
+  justify-content: space-between;
+}
+
+.martyr-picker-value {
+  font-size: 26rpx;
+  color: #2f2323;
+}
+
+.martyr-picker-arrow {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #8b3636;
+}
+
+.martyr-search-btn {
+  height: 92rpx;
+  margin-top: 24rpx;
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #8b3636 0%, #b2594b 100%);
+}
+
+.martyr-search-btn-text {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.martyr-section-head {
+  margin-top: 28rpx;
+}
+
+.martyr-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-top: 18rpx;
+}
+
+.martyr-person-card {
+  padding: 24rpx;
+}
+
+.martyr-person-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2f2323;
+}
+
+.martyr-person-years,
+.martyr-person-address {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: #8f7a76;
+}
+
+.martyr-status-card-error {
+  border: 1px solid rgba(139, 54, 54, 0.12);
+}
+
+.martyr-status-action {
+  margin-top: 16rpx;
+  color: #8b3636;
+}
+
+.martyr-empty-card {
+  text-align: center;
+}

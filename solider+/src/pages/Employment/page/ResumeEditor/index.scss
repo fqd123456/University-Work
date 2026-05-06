@@ -1,0 +1,161 @@
+.resume-editor-page {
+  min-height: 100vh;
+  padding: 24rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top left, rgba(223, 245, 234, 0.9) 0, rgba(223, 245, 234, 0) 28%),
+    linear-gradient(180deg, #f7f8f4 0%, #f3f4ee 100%);
+}
+
+.resume-editor-card {
+  margin-bottom: 22rpx;
+  padding: 28rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14rpx 28rpx rgba(81, 92, 83, 0.08);
+}
+
+.resume-editor-title,
+.resume-editor-section-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1f2b24;
+}
+
+.resume-editor-name {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #0d7c47;
+}
+
+.resume-editor-tip,
+.resume-editor-empty,
+.resume-editor-count {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #7b877f;
+}
+
+.resume-editor-row {
+  display: flex;
+  align-items: center;
+  gap: 22rpx;
+  padding: 18rpx 0;
+  border-bottom: 1px solid #eef2ee;
+}
+
+.resume-editor-row:last-child {
+  border-bottom: none;
+}
+
+.resume-editor-label {
+  width: 150rpx;
+  flex-shrink: 0;
+  font-size: 26rpx;
+  color: #1f2b24;
+}
+
+.resume-editor-input {
+  flex: 1;
+  text-align: right;
+  font-size: 26rpx;
+  color: #1f2b24;
+}
+
+.resume-editor-static {
+  flex: 1;
+  text-align: right;
+  font-size: 26rpx;
+  color: #5e6b61;
+}
+
+.resume-editor-input-block {
+  width: 100%;
+  margin-top: 16rpx;
+  text-align: left;
+}
+
+.resume-editor-upload-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resume-editor-link {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #0d7c47;
+}
+
+.resume-editor-id-photo {
+  display: block;
+  width: 220rpx;
+  height: 280rpx;
+  margin-top: 18rpx;
+  border-radius: 22rpx;
+}
+
+.resume-editor-cert-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 18rpx;
+}
+
+.resume-editor-cert-img {
+  width: 164rpx;
+  height: 164rpx;
+  border-radius: 18rpx;
+}
+
+.resume-editor-textarea {
+  width: 100%;
+  min-height: 220rpx;
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  line-height: 1.8;
+  color: #1f2b24;
+}
+
+.resume-editor-action-row {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 28rpx;
+}
+
+.resume-editor-primary-btn,
+.resume-editor-secondary-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92rpx;
+  border-radius: 999rpx;
+}
+
+.resume-editor-primary-btn {
+  background: linear-gradient(135deg, #13a46d 0%, #2ec38d 100%);
+}
+
+.resume-editor-secondary-btn {
+  background: #e9eeea;
+}
+
+.resume-editor-primary-text,
+.resume-editor-secondary-text {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.resume-editor-primary-text {
+  color: #ffffff;
+}
+
+.resume-editor-secondary-text {
+  color: #425147;
+}

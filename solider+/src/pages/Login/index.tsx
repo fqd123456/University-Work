@@ -55,21 +55,23 @@ const Login = () => {
 
   return (
     <View className='login-page'>
-      <View className='login-logo'>
-        <View className='logo-circle'>
-          <Text className='logo-text'>兵+</Text>
+      <View className='login-main'>
+        <View className='login-logo'>
+          <View className='logo-circle'>
+            <Text className='logo-text'>兵+</Text>
+          </View>
         </View>
-      </View>
-      <Text className='login-title'>你好，老兵！</Text>
+        <Text className='login-title'>你好，老兵！</Text>
 
-      <View
-        className={`login-btn primary ${agreed ? '' : 'disabled'}`}
-        onClick={handleLogin}
-      >
-        <Text className='login-btn-text'>一键登录</Text>
-      </View>
-      <View className='login-btn ghost' onClick={handleSkip}>
-        <Text className='login-btn-text ghost-text'>暂不登录</Text>
+        <View
+          className={`login-btn primary ${agreed ? '' : 'disabled'}`}
+          onClick={handleLogin}
+        >
+          <Text className='login-btn-text'>一键登录</Text>
+        </View>
+        <View className='login-btn ghost' onClick={handleSkip}>
+          <Text className='login-btn-text ghost-text'>暂不登录</Text>
+        </View>
       </View>
 
       <View className='login-policy' onClick={() => setAgreed(!agreed)}>

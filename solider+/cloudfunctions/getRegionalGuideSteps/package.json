@@ -1,0 +1,9 @@
+{
+  "name": "getRegionalGuideSteps",
+  "version": "1.0.0",
+  "description": "获取地区退伍指引步骤",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

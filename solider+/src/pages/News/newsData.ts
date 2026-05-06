@@ -1,4 +1,4 @@
-export type NewsTabKey = 'info' | 'media' | 'policy' | 'local'
+export type NewsTabKey = 'info' | 'veteran' | 'media' | 'policy' | 'local'
 
 export type NewsItem = {
   id: string
@@ -12,6 +12,7 @@ export type NewsItem = {
 
 export const newsTabs: { key: NewsTabKey; label: string }[] = [
   { key: 'info', label: '新闻资讯' },
+  { key: 'veteran', label: '退役专栏' },
   { key: 'media', label: '媒体报道' },
   { key: 'policy', label: '政策解读' },
   { key: 'local', label: '地方动态' },

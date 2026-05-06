@@ -1,0 +1,35 @@
+.light-loading {
+  min-height: 220rpx;
+  padding: 44rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.light-loading-spinner {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  border: 5rpx solid rgba(139, 54, 54, 0.14);
+  border-top-color: #8b3636;
+  animation: light-loading-spin 0.9s linear infinite;
+}
+
+.light-loading-text {
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  line-height: 1.5;
+  color: #9b8782;
+}
+
+@keyframes light-loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "getMartyrDirectoryDetail",
+  "version": "1.0.0",
+  "description": "获取烈士英名录详情",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

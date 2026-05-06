@@ -1,0 +1,5 @@
+{"_id":"blog_category_template_life","userId":"__template__","name":"生活","sortOrder":1,"articleCount":0,"isDefault":true,"createdAt":"2026-04-02 09:00","updatedAt":"2026-04-02 09:00"}
+{"_id":"blog_category_template_sports","userId":"__template__","name":"运动","sortOrder":2,"articleCount":0,"isDefault":true,"createdAt":"2026-04-02 09:00","updatedAt":"2026-04-02 09:00"}
+{"_id":"blog_category_demo_life","userId":"demo_user_001","name":"生活","sortOrder":1,"articleCount":2,"isDefault":true,"createdAt":"2026-04-02 09:12","updatedAt":"2026-04-02 09:12"}
+{"_id":"blog_category_demo_sports","userId":"demo_user_001","name":"运动","sortOrder":2,"articleCount":1,"isDefault":true,"createdAt":"2026-04-02 09:12","updatedAt":"2026-04-02 09:12"}
+{"_id":"blog_category_demo_learning","userId":"demo_user_001","name":"学习","sortOrder":3,"articleCount":0,"isDefault":false,"createdAt":"2026-04-02 09:12","updatedAt":"2026-04-02 09:12"}

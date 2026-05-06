@@ -12,13 +12,12 @@ exports.main = async (event, context) => {
     const userRes = await db.collection('users').doc(OPENID).get()
     const userData = userRes.data
   
-    // 情况 A：用户已经登录了，直接返回
+    // 情况 A：用户已经登录了，直接返回，一般不会走到这
     if (userData.is_login === true) {
       return { success: true, isNew: false, data: userData, msg: '已在登录状态' }
     }
   
     // 情况 B：用户存在但处于注销状态 (is_login === false)
-    // 此时我们需要执行“重新登录”的动作
     await db.collection('users').doc(OPENID).update({
       data: {
         is_login: true,
@@ -43,6 +42,11 @@ exports.main = async (event, context) => {
       _id: OPENID,
       nickname: safeUserInfo.nickName || '微信用户',
       avatar: safeUserInfo.avatarUrl || '',
+      real_name: '',
+      phone: '',
+      gender: '',
+      service_region: '',
+      bio: '',
       role: 0,
       is_login: true, // 注册即登录
       createTime: db.serverDate(),

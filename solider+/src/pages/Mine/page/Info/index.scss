@@ -1,0 +1,42 @@
+.mine-info-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 40rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top left, rgba(159, 71, 71, 0.14) 0, rgba(159, 71, 71, 0) 32%),
+    linear-gradient(180deg, #fbf7f2 0%, #f5efe7 100%);
+}
+
+.mine-info-card,
+.mine-info-item {
+  margin-top: 24rpx;
+  padding: 28rpx 26rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 18rpx 34rpx rgba(111, 77, 63, 0.1);
+}
+
+.mine-info-title,
+.mine-info-item-title {
+  display: block;
+  color: #382521;
+}
+
+.mine-info-title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.mine-info-desc,
+.mine-info-item-line {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #8a736d;
+}
+
+.mine-info-item-title {
+  font-size: 28rpx;
+  font-weight: 700;
+}

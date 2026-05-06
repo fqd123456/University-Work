@@ -1,0 +1,3 @@
+{"_id":"fav_template_job_001","userId":"__template__","targetType":"job","targetId":"job_001","createdAt":"2026-03-25 09:20","updatedAt":"2026-03-25 09:20","isTemplate":true}
+{"_id":"fav_template_job_003","userId":"__template__","targetType":"job","targetId":"job_003","createdAt":"2026-03-26 11:10","updatedAt":"2026-03-26 11:10","isTemplate":true}
+{"_id":"fav_template_event_001","userId":"__template__","targetType":"event","targetId":"event_001","createdAt":"2026-03-25 10:40","updatedAt":"2026-03-25 10:40","isTemplate":true}

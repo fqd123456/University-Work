@@ -19,7 +19,12 @@ exports.main = async (event, context) => {
       data: {
         name: userData.real_name || userData.nickname,
         nickname: userData.nickname,
+        real_name: userData.real_name || '',
         avatar: userData.avatar,
+        phone: userData.phone || '',
+        gender: userData.gender || '',
+        service_region: userData.service_region || '',
+        bio: userData.bio || '',
         auditStatus: userData.audit_status,
         openid: OPENID
       }

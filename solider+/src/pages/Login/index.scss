@@ -4,14 +4,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: calc(140rpx + env(safe-area-inset-top)) 48rpx 60rpx;
+  justify-content: space-between;
+  padding: calc(40rpx + env(safe-area-inset-top)) 48rpx calc(60rpx + env(safe-area-inset-bottom));
   box-sizing: border-box;
   color: #1f2937;
 }
 
+.login-main {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .login-logo {
-  margin-top: 20rpx;
   margin-bottom: 24rpx;
+  display: flex;
+  justify-content: center;
 }
 
 .logo-circle {
@@ -33,6 +43,8 @@
 }
 
 .login-title {
+  display: block;
+  text-align: center;
   font-size: 36rpx;
   font-weight: 700;
   color: #1f2937;
@@ -79,7 +91,7 @@
 }
 
 .login-policy {
-  margin-top: auto;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   gap: 12rpx;

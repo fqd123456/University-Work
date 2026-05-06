@@ -1,0 +1,9 @@
+{
+  "name": "getEmploymentData",
+  "version": "1.0.0",
+  "description": "就业服务首页聚合数据",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

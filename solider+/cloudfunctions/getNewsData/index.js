@@ -4,8 +4,10 @@ const https = require('https')
 const zlib = require('zlib')
 
 cloud.init({ env: cloud.DYNAMIC_TYPE_CACHED })
+const db = cloud.database()
 
 const GOV_NEWS_URL = 'https://www.gov.cn/pushinfo/v150203/pushinfo.json'
+const VETERAN_NEWS_COLLECTION = 'news_veteran_articles'
 const REQUEST_TIMEOUT = 15000
 const DEFAULT_LIMIT = 10
 const MAX_LIMIT = 12
@@ -343,6 +345,39 @@ const buildNewsList = (rawList, limit) => {
   ]
 }
 
+const normalizeDbContent = (value) => {
+  if (!Array.isArray(value)) {
+    return []
+  }
+
+  return value
+    .map((item) => cleanText(item))
+    .filter(Boolean)
+}
+
+const sortVeteranArticles = (items) => {
+  return items.slice().sort((left, right) => {
+    if (!!left.isTop !== !!right.isTop) {
+      return left.isTop ? -1 : 1
+    }
+
+    return `${right.publishedAt || ''}`.localeCompare(`${left.publishedAt || ''}`)
+  })
+}
+
+const buildVeteranNewsItem = (item, index) => {
+  const articleId = `${item._id || `veteran-${index + 1}`}`.trim()
+
+  return {
+    id: articleId,
+    tab: 'veteran',
+    title: cleanText(item.title),
+    time: normalizeTime(item.publishedAt),
+    source: cleanText(item.source) || '退役军人事务部',
+    content: normalizeDbContent(item.content),
+  }
+}
+
 const fetchNewsList = async (limit) => {
   const rawText = await requestText(GOV_NEWS_URL)
   const rawList = parseJson(rawText, [])
@@ -352,6 +387,19 @@ const fetchNewsList = async (limit) => {
   }
 
   return buildNewsList(rawList, limit)
+}
+
+const fetchVeteranNewsList = async (limit) => {
+  const res = await db.collection(VETERAN_NEWS_COLLECTION)
+    .where({
+      isPublished: true,
+    })
+    .limit(Math.max(limit, 20))
+    .get()
+
+  return sortVeteranArticles(res.data || [])
+    .slice(0, limit)
+    .map((item, index) => buildVeteranNewsItem(item, index))
 }
 
 const fetchNewsDetail = async (url) => {
@@ -398,7 +446,34 @@ exports.main = async (event) => {
       }
     }
 
-    const list = await fetchNewsList(limit)
+    let govList = []
+    let veteranList = []
+    let govError = null
+    let veteranError = null
+
+    try {
+      govList = await fetchNewsList(limit)
+    } catch (error) {
+      govError = error
+    }
+
+    try {
+      veteranList = await fetchVeteranNewsList(limit)
+    } catch (error) {
+      veteranError = error
+    }
+
+    const list = [...govList, ...veteranList]
+
+    if (!list.length) {
+      const message = govError && govError.message
+        ? govError.message
+        : veteranError && veteranError.message
+          ? veteranError.message
+          : '新闻获取失败'
+      throw new Error(message)
+    }
+
     return {
       success: true,
       data: list,

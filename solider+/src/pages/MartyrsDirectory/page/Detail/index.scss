@@ -1,0 +1,117 @@
+.martyr-detail-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 40rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top right, rgba(139, 54, 54, 0.16) 0, rgba(139, 54, 54, 0) 34%),
+    linear-gradient(180deg, #fbf6f2 0%, #f4eee8 100%);
+}
+
+.martyr-detail-hero,
+.martyr-detail-status-card,
+.martyr-detail-base-card,
+.martyr-detail-section {
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 20rpx 40rpx rgba(97, 65, 58, 0.1);
+}
+
+.martyr-detail-hero {
+  padding: 34rpx 30rpx;
+  background: linear-gradient(135deg, #8b3636 0%, #b2594b 100%);
+  box-shadow: 0 24rpx 46rpx rgba(139, 54, 54, 0.22);
+}
+
+.martyr-detail-tag,
+.martyr-detail-status-action,
+.martyr-detail-chip {
+  display: inline-flex;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.martyr-detail-tag {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.martyr-detail-title {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 42rpx;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #ffffff;
+}
+
+.martyr-detail-meta,
+.martyr-detail-desc,
+.martyr-detail-status-desc,
+.martyr-detail-paragraph {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.8;
+}
+
+.martyr-detail-meta,
+.martyr-detail-desc {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.martyr-detail-status-card,
+.martyr-detail-base-card,
+.martyr-detail-section {
+  margin-top: 24rpx;
+  padding: 28rpx 26rpx;
+}
+
+.martyr-detail-status-card-error {
+  border: 1px solid rgba(139, 54, 54, 0.12);
+}
+
+.martyr-detail-status-title,
+.martyr-detail-section-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #2f2323;
+}
+
+.martyr-detail-status-desc,
+.martyr-detail-paragraph,
+.martyr-detail-info-item {
+  color: #8f7a76;
+}
+
+.martyr-detail-status-action {
+  margin-top: 16rpx;
+  color: #8b3636;
+}
+
+.martyr-detail-info-list {
+  margin-top: 16rpx;
+}
+
+.martyr-detail-info-item {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+.martyr-detail-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 18rpx;
+}
+
+.martyr-detail-chip {
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(139, 54, 54, 0.08);
+  color: #8b3636;
+}

@@ -1,0 +1,120 @@
+.martyr-result-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 40rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top left, rgba(139, 54, 54, 0.16) 0, rgba(139, 54, 54, 0) 32%),
+    linear-gradient(180deg, #fbf6f2 0%, #f4eee8 100%);
+}
+
+.martyr-result-hero,
+.martyr-result-status-card,
+.martyr-result-card,
+.martyr-result-empty-card {
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 20rpx 40rpx rgba(97, 65, 58, 0.1);
+}
+
+.martyr-result-hero {
+  padding: 34rpx 30rpx;
+  background: linear-gradient(135deg, #8b3636 0%, #b2594b 100%);
+  box-shadow: 0 24rpx 46rpx rgba(139, 54, 54, 0.22);
+}
+
+.martyr-result-tag,
+.martyr-result-status-action {
+  display: inline-flex;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.martyr-result-tag {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.martyr-result-title {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #ffffff;
+}
+
+.martyr-result-desc,
+.martyr-result-count,
+.martyr-result-status-desc,
+.martyr-result-empty-desc {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+.martyr-result-desc,
+.martyr-result-count {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.martyr-result-status-card,
+.martyr-result-empty-card {
+  margin-top: 24rpx;
+  padding: 28rpx 26rpx;
+}
+
+.martyr-result-status-card-error {
+  border: 1px solid rgba(139, 54, 54, 0.12);
+}
+
+.martyr-result-status-title,
+.martyr-result-empty-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #2f2323;
+}
+
+.martyr-result-status-desc,
+.martyr-result-empty-desc {
+  color: #8f7a76;
+}
+
+.martyr-result-status-action {
+  margin-top: 16rpx;
+  color: #8b3636;
+}
+
+.martyr-result-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
+.martyr-result-card {
+  padding: 24rpx;
+}
+
+.martyr-result-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2f2323;
+}
+
+.martyr-result-years,
+.martyr-result-address {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: #8f7a76;
+}
+
+.martyr-result-empty-card {
+  text-align: center;
+}

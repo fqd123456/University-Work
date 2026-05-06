@@ -1,0 +1,336 @@
+.employment-detail-page {
+  min-height: 100vh;
+  padding: 24rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top left, rgba(223, 245, 234, 0.9) 0, rgba(223, 245, 234, 0) 28%),
+    linear-gradient(180deg, #f7f8f4 0%, #f3f4ee 100%);
+}
+
+.employment-detail-status-page {
+  display: flex;
+  align-items: center;
+}
+
+.employment-detail-header {
+  padding: 30rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12rpx 28rpx rgba(81, 92, 83, 0.08);
+}
+
+.employment-detail-header-plain {
+  padding: 8rpx 4rpx 12rpx;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.employment-detail-title {
+  display: block;
+  font-size: 42rpx;
+  font-weight: 700;
+  line-height: 1.28;
+  color: #1f2b24;
+}
+
+.employment-detail-desc {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #6f7c72;
+}
+
+.employment-detail-status-card,
+.employment-detail-card,
+.employment-detail-empty-card {
+  margin-top: 24rpx;
+  padding: 28rpx;
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14rpx 28rpx rgba(81, 92, 83, 0.08);
+}
+
+.employment-detail-status-card-error {
+  border: 1px solid rgba(194, 81, 66, 0.16);
+}
+
+.employment-detail-status-title,
+.employment-detail-card-title,
+.employment-detail-empty-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #202d26;
+}
+
+.employment-detail-status-desc,
+.employment-detail-empty-desc {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #728076;
+}
+
+.employment-detail-status-action {
+  display: inline-flex;
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #13a46d;
+}
+
+.employment-detail-list {
+  margin-top: 2rpx;
+}
+
+.employment-detail-card {
+  margin-bottom: 20rpx;
+}
+
+.employment-detail-card:last-child {
+  margin-bottom: 0;
+}
+
+.employment-detail-card-subtitle {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #516055;
+}
+
+.employment-detail-card-top,
+.employment-detail-resume-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.employment-detail-card-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.employment-detail-salary-box {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.employment-detail-salary-text {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #c25142;
+}
+
+.employment-detail-salary-unit {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #8c988f;
+}
+
+.employment-detail-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 18rpx;
+}
+
+.employment-detail-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+}
+
+.employment-detail-chip-muted {
+  background: #f1f4f1;
+  color: #66746a;
+}
+
+.employment-detail-chip-accent {
+  background: rgba(19, 164, 109, 0.1);
+  color: #0d7c47;
+}
+
+.employment-detail-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  margin-top: 22rpx;
+}
+
+.employment-detail-foot-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.employment-detail-foot-text {
+  font-size: 22rpx;
+  color: #8a968d;
+}
+
+.employment-detail-primary-btn,
+.employment-detail-secondary-btn,
+.employment-detail-event-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 156rpx;
+  padding: 18rpx 26rpx;
+  border-radius: 999rpx;
+}
+
+.employment-detail-primary-btn {
+  background: linear-gradient(135deg, #13a46d 0%, #2ec38d 100%);
+  box-shadow: 0 10rpx 20rpx rgba(19, 164, 109, 0.18);
+}
+
+.employment-detail-primary-btn-followed,
+.employment-detail-event-action-followed {
+  background: rgba(19, 164, 109, 0.12);
+  box-shadow: none;
+}
+
+.employment-detail-secondary-btn,
+.employment-detail-event-action-ended {
+  background: #eef1ed;
+}
+
+.employment-detail-primary-btn-text,
+.employment-detail-secondary-btn-text,
+.employment-detail-event-action-text {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.employment-detail-primary-btn-text-followed,
+.employment-detail-event-action-followed .employment-detail-event-action-text {
+  color: #0d7c47;
+}
+
+.employment-detail-secondary-btn-text,
+.employment-detail-event-action-text-ended {
+  color: #7a847d;
+}
+
+.employment-detail-event-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+}
+
+.employment-detail-event-type,
+.employment-detail-inline-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.employment-detail-event-type {
+  background: rgba(19, 164, 109, 0.1);
+  color: #0d7c47;
+}
+
+.employment-detail-inline-tag {
+  background: rgba(19, 164, 109, 0.12);
+}
+
+.employment-detail-inline-tag-text {
+  color: #0d7c47;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.employment-detail-event-meta,
+.employment-detail-event-follow {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #6d7b71;
+}
+
+.employment-detail-resume-name {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #202d26;
+}
+
+.employment-detail-resume-target,
+.employment-detail-resume-side-title,
+.employment-detail-resume-side-value,
+.employment-detail-resume-meta,
+.employment-detail-resume-progress-text,
+.employment-detail-resume-bio-title,
+.employment-detail-resume-bio-text {
+  display: block;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #6f7c72;
+}
+
+.employment-detail-resume-target {
+  margin-top: 10rpx;
+  color: #415046;
+}
+
+.employment-detail-resume-side {
+  text-align: right;
+}
+
+.employment-detail-resume-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin-top: 18rpx;
+}
+
+.employment-detail-resume-progress-track {
+  margin-top: 24rpx;
+  height: 16rpx;
+  border-radius: 999rpx;
+  background: #e8efea;
+  overflow: hidden;
+}
+
+.employment-detail-resume-progress-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, #13a46d 0%, #2ec38d 100%);
+}
+
+.employment-detail-resume-bio-box {
+  margin-top: 20rpx;
+  padding: 22rpx;
+  border-radius: 24rpx;
+  background: #f4f7f4;
+}
+
+.employment-detail-resume-action-row {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 26rpx;
+}
+
+.employment-detail-resume-btn {
+  margin-top: 0;
+  width: fit-content;
+  flex: 1;
+}

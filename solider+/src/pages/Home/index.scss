@@ -82,6 +82,14 @@
   flex: 1;
   min-width: 0;
   text-align: center;
+  padding: 12rpx 8rpx 0;
+  border-radius: 16rpx;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+    background: #f8f9fb;
+  }
 }
 
 .guide-step-top {
@@ -101,14 +109,14 @@
 }
 
 .guide-step-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 44rpx;
   height: 44rpx;
   border-radius: 50%;
   background: #e7edf5;
   color: #6b7280;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-shrink: 0;
 }
 
@@ -116,6 +124,12 @@
   background: #eb3636;
   color: #ffffff;
   box-shadow: 0 8rpx 18rpx rgba(235, 54, 54, 0.18);
+}
+
+.guide-step-circle-completed {
+  background: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 8rpx 18rpx rgba(22, 163, 74, 0.18);
 }
 
 .guide-step-num {
@@ -141,4 +155,25 @@
   font-size: 20rpx;
   line-height: 1.5;
   color: #94a3b8;
+}
+
+.guide-step-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12rpx;
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+  font-size: 20rpx;
+  font-weight: 600;
+}
+
+.guide-step-status-todo {
+  color: #eb3636;
+  background: rgba(235, 54, 54, 0.08);
+}
+
+.guide-step-status-done {
+  color: #16a34a;
+  background: rgba(22, 163, 74, 0.1);
 }

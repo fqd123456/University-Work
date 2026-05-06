@@ -1,0 +1,199 @@
+.training-status-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 40rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top right, rgba(143, 62, 38, 0.12) 0, rgba(143, 62, 38, 0) 32%),
+    linear-gradient(180deg, #fbf7f2 0%, #f6efe8 100%);
+}
+
+.training-status-hero,
+.training-status-card,
+.training-status-summary,
+.training-status-item,
+.training-status-empty-card {
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 20rpx 40rpx rgba(111, 77, 63, 0.1);
+}
+
+.training-status-hero {
+  padding: 34rpx 30rpx;
+  background: linear-gradient(135deg, #7f2f24 0%, #a74e33 54%, #cf8956 100%);
+  box-shadow: 0 24rpx 46rpx rgba(127, 47, 36, 0.22);
+}
+
+.training-status-hero-tag,
+.training-status-card-action,
+.training-status-chip {
+  display: inline-flex;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.training-status-hero-tag {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.training-status-hero-title {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.38;
+  color: #ffffff;
+}
+
+.training-status-hero-desc,
+.training-status-card-desc,
+.training-status-item-provider,
+.training-status-item-meta,
+.training-status-empty-desc {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+.training-status-hero-desc {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.training-status-card,
+.training-status-summary,
+.training-status-empty-card {
+  margin-top: 24rpx;
+  padding: 28rpx 26rpx;
+}
+
+.training-status-card-error {
+  border: 1px solid rgba(139, 54, 54, 0.12);
+}
+
+.training-status-card-title,
+.training-status-empty-title,
+.training-status-item-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #382521;
+}
+
+.training-status-card-desc,
+.training-status-item-provider,
+.training-status-item-meta,
+.training-status-empty-desc {
+  color: #8a736d;
+}
+
+.training-status-card-action {
+  margin-top: 16rpx;
+  color: #8b3636;
+}
+
+.training-status-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.training-status-metric {
+  flex: 1;
+  text-align: center;
+}
+
+.training-status-metric-value {
+  display: block;
+  font-size: 42rpx;
+  font-weight: 700;
+  color: #8a3927;
+}
+
+.training-status-metric-label {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #8a736d;
+}
+
+.training-status-divider {
+  width: 1px;
+  height: 72rpx;
+  background: #eadfd6;
+}
+
+.training-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+  margin-top: 24rpx;
+}
+
+.training-status-item {
+  padding: 26rpx;
+}
+
+.training-status-item-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.training-status-item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.training-status-chip {
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+}
+
+.training-status-chip-pending {
+  color: #b35b21;
+  background: rgba(179, 91, 33, 0.1);
+}
+
+.training-status-chip-upcoming {
+  color: #8b3636;
+  background: rgba(139, 54, 54, 0.1);
+}
+
+.training-status-chip-running {
+  color: #23588c;
+  background: rgba(35, 88, 140, 0.1);
+}
+
+.training-status-chip-done {
+  color: #0d7c47;
+  background: rgba(13, 124, 71, 0.1);
+}
+
+.training-status-chip-rejected {
+  color: #9b3440;
+  background: rgba(155, 52, 64, 0.1);
+}
+
+.training-status-empty-card {
+  text-align: center;
+}
+
+.training-status-empty-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92rpx;
+  margin-top: 24rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, #8b3636 0%, #b45b52 100%);
+}
+
+.training-status-empty-btn-text {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #ffffff;
+}

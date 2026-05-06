@@ -1,0 +1,207 @@
+.memorial-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 40rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top right, rgba(127, 34, 34, 0.16) 0, rgba(127, 34, 34, 0) 34%),
+    linear-gradient(180deg, #fbf7f3 0%, #f3eee7 100%);
+}
+
+.memorial-location-card,
+.memorial-search-card,
+.memorial-status-card,
+.memorial-empty-card,
+.memorial-card {
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 20rpx 40rpx rgba(97, 65, 58, 0.1);
+}
+
+.memorial-status-action {
+  display: inline-flex;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.memorial-location-note,
+.memorial-section-subtitle,
+.memorial-status-desc,
+.memorial-empty-desc {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+.memorial-location-card,
+.memorial-search-card,
+.memorial-status-card,
+.memorial-empty-card {
+  margin-top: 24rpx;
+  padding: 28rpx 26rpx;
+}
+
+.memorial-location-label,
+.memorial-card-title,
+.memorial-form-label,
+.memorial-section-title,
+.memorial-status-title,
+.memorial-empty-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #2f2323;
+}
+
+.memorial-location-city {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #8b3636;
+}
+
+.memorial-location-region {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #7c6762;
+}
+
+.memorial-location-note,
+.memorial-section-subtitle,
+.memorial-status-desc,
+.memorial-empty-desc {
+  color: #8f7a76;
+}
+
+.memorial-form-group {
+  margin-top: 20rpx;
+}
+
+.memorial-form-input,
+.memorial-picker-field {
+  min-height: 88rpx;
+  margin-top: 14rpx;
+  padding: 0 20rpx;
+  border-radius: 24rpx;
+  background: #f8f3f0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.memorial-form-input {
+  font-size: 26rpx;
+  color: #2f2323;
+}
+
+.memorial-picker-field {
+  justify-content: space-between;
+}
+
+.memorial-picker-value {
+  font-size: 26rpx;
+  color: #2f2323;
+}
+
+.memorial-picker-arrow {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #8b3636;
+}
+
+.memorial-search-btn {
+  height: 92rpx;
+  margin-top: 24rpx;
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #7f2222 0%, #a8473c 100%);
+}
+
+.memorial-search-btn-text {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.memorial-section-head {
+  margin-top: 28rpx;
+}
+
+.memorial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18rpx;
+  margin-top: 18rpx;
+}
+
+.memorial-card {
+  overflow: hidden;
+}
+
+.memorial-card-image-wrap {
+  height: 220rpx;
+  background: #efe4de;
+}
+
+.memorial-card-image {
+  width: 100%;
+  height: 100%;
+}
+
+.memorial-card-image-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #b86a5d 0%, #8b3636 100%);
+}
+
+.memorial-card-image-fallback-text {
+  padding: 0 18rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+}
+
+.memorial-card-body {
+  padding: 20rpx;
+}
+
+.memorial-card-name {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 28rpx;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #2f2323;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.memorial-card-location {
+  display: -webkit-box;
+  margin-top: 10rpx;
+  overflow: hidden;
+  font-size: 22rpx;
+  line-height: 1.6;
+  color: #8f7a76;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.memorial-status-card-error {
+  border: 1px solid rgba(139, 54, 54, 0.12);
+}
+
+.memorial-status-action {
+  margin-top: 16rpx;
+  color: #8b3636;
+}
+
+.memorial-empty-card {
+  text-align: center;
+}

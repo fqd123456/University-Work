@@ -1,0 +1,9 @@
+{
+  "name": "saveGuideProgress",
+  "version": "1.0.0",
+  "description": "保存用户退伍指引进度",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

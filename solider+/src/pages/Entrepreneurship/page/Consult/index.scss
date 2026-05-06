@@ -1,0 +1,65 @@
+.entrepreneurship-consult-page {
+  min-height: 100vh;
+  padding: 24rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top right, rgba(139, 54, 54, 0.08) 0, rgba(139, 54, 54, 0) 30%),
+    linear-gradient(180deg, #f7f1ef 0%, #f5f3f1 100%);
+}
+
+.entrepreneurship-consult-header,
+.entrepreneurship-consult-status,
+.entrepreneurship-consult-card {
+  padding: 28rpx;
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12rpx 28rpx rgba(110, 74, 70, 0.08);
+}
+
+.entrepreneurship-consult-title,
+.entrepreneurship-consult-status-title,
+.entrepreneurship-consult-card-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #2f1f1f;
+}
+
+.entrepreneurship-consult-desc,
+.entrepreneurship-consult-status-desc,
+.entrepreneurship-consult-card-desc {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #786868;
+}
+
+.entrepreneurship-consult-status-action,
+.entrepreneurship-consult-card-link {
+  display: inline-flex;
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #8b3636;
+}
+
+.entrepreneurship-consult-card {
+  margin-top: 24rpx;
+}
+
+.entrepreneurship-consult-card-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #8b3636;
+  background: rgba(139, 54, 54, 0.08);
+}
+
+.entrepreneurship-consult-card-ai {
+  background: linear-gradient(145deg, #f8eded 0%, #fff8f8 100%);
+}
