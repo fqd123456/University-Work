@@ -1,10 +1,10 @@
 import { View, Text, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Taro from '@tarojs/taro'
 import './index.scss'
-import locationStore from '../../store/location'
 import { ensureProtectedPageAccess } from '../../utils/auth'
 import { recordRecentService, searchServiceItems, ServiceItem } from '../../pages/Service/serviceDate'
+import { getRealLocationInfo, SETTLEMENT_CITY } from '../../utils/location'
 
 type InputEvent = {
   detail: {
@@ -34,6 +34,7 @@ const CustomNav = () => {
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [keyword, setKeyword] = useState('')
   const [searchVisible, setSearchVisible] = useState(false)
+  const [cityName, setCityName] = useState(SETTLEMENT_CITY)
 
   const searchResultList = searchServiceItems(keyword).slice(0, 6)
 
@@ -81,6 +82,13 @@ const CustomNav = () => {
     Taro.navigateTo({ url: item.pagePath })
   }
 
+  useEffect(() => {
+    void (async () => {
+      const locationInfo = await getRealLocationInfo(SETTLEMENT_CITY)
+      setCityName(locationInfo.city || SETTLEMENT_CITY)
+    })()
+  }, [])
+
   return (
     <View className='custom-header-wrapper'>
       {/* 1. 底层：轮播图背景 */}
@@ -102,7 +110,7 @@ const CustomNav = () => {
       {/* 2. 顶层：悬浮搜索栏  }*/}
       <View className='search-container' style={headerStyle}>
         <View className='city-picker' onClick={() => Taro.navigateTo({ url: '/pages/CityList/index' })}>
-          <Text className='city-name'>{locationStore.currentCity}</Text>
+          <Text className='city-name'>{cityName}</Text>
           <View className='arrow-down' />
         </View>
 

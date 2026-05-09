@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Taro, { useDidShow } from '@tarojs/taro'
 import LightLoading from '../../components/LightLoading'
 import { ensureLoggedIn } from '../../utils/auth'
+import { SETTLEMENT_LABEL, SETTLEMENT_REGION_NAME } from '../../utils/location'
 import { EntrepreneurshipCompany, EntrepreneurshipHomeData } from './types'
 import './index.scss'
 
@@ -10,7 +11,7 @@ const DEFAULT_REGION_ID = 'jx_fuzhou'
 
 const initialHomeData: EntrepreneurshipHomeData = {
   regionId: DEFAULT_REGION_ID,
-  regionName: '当前地区',
+  regionName: SETTLEMENT_REGION_NAME,
   mentorCompanies: [],
   office: null,
   overview: {
@@ -101,8 +102,8 @@ const Entrepreneurship = () => {
     <View className='entrepreneurship-page'>
       <View className='entrepreneurship-hero'>
         <View className='entrepreneurship-hero-region'>
-          <Text className='entrepreneurship-hero-region-label'>当前地区</Text>
-          <Text className='entrepreneurship-hero-region-value'>{pageData.regionName}</Text>
+          <Text className='entrepreneurship-hero-region-label'>安置位置</Text>
+          <Text className='entrepreneurship-hero-region-value'>{SETTLEMENT_LABEL}</Text>
         </View>
       </View>
 

@@ -2,12 +2,11 @@ import { Text, View } from '@tarojs/components'
 import { useState } from 'react'
 import Taro, { useDidShow } from '@tarojs/taro'
 import LightLoading from '../../components/LightLoading'
-import locationStore from '../../store/location'
 import { ensureLoggedIn } from '../../utils/auth'
+import { SETTLEMENT_CITY, SETTLEMENT_LABEL, SETTLEMENT_PROVINCE, SETTLEMENT_REGION_NAME } from '../../utils/location'
 import {
   DEFAULT_DIRECTORY_REGION_ID,
   DEFAULT_DIRECTORY_REGION_TREE,
-  findRegionSelectionByCity,
   findRegionSelectionByRegionId,
   getRegionSelectionFromIndices,
   RegionProvinceOption,
@@ -31,9 +30,9 @@ type RegionOptionsResult = {
 
 const initialHomeData: EducationTrainingHomeData = {
   regionId: DEFAULT_DIRECTORY_REGION_ID,
-  regionName: '当前地区',
-  province: '江西省',
-  city: '抚州市',
+  regionName: SETTLEMENT_REGION_NAME,
+  province: SETTLEMENT_PROVINCE,
+  city: SETTLEMENT_CITY,
   policy: null,
   recommendedPrograms: [],
   statusSummary: {
@@ -90,15 +89,12 @@ const EducationTraining = () => {
     try {
       const regionConfig = await loadRegionTree()
       const nextRegionTree = regionConfig.tree
-      const matchedRegion = findRegionSelectionByCity(nextRegionTree, locationStore.currentCity)
       const fallbackRegion = findRegionSelectionByRegionId(nextRegionTree, regionConfig.defaultRegionId)
         || getRegionSelectionFromIndices(nextRegionTree, [0, 0, 0])
-      const currentRegion = matchedRegion || fallbackRegion
+      const currentRegion = fallbackRegion
 
       setLocationNote(
-        matchedRegion
-          ? `当前已根据 ${locationStore.currentCity} 为你匹配本地培训资源，页面以 ${currentRegion.province} 为主展示。`
-          : `当前城市暂无培训配置，已为你展示 ${fallbackRegion.regionName} 的培训信息。`
+        `当前按安置位置 ${SETTLEMENT_LABEL} 为你匹配培训资源。`
       )
 
       const res = await Taro.cloud.callFunction({
@@ -174,7 +170,7 @@ const EducationTraining = () => {
       <View className='training-location-card'>
         <View className='training-location-head'>
           <View className='training-location-main'>
-            <Text className='training-section-label'>当前定位</Text>
+            <Text className='training-section-label'>安置位置</Text>
             <Text className='training-location-province'>{homeData.province}</Text>
             <Text className='training-location-city'>{homeData.city}</Text>
           </View>

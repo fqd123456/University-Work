@@ -2,7 +2,7 @@ import { Input, Picker, Text, View } from '@tarojs/components'
 import { useState } from 'react'
 import Taro, { useDidShow } from '@tarojs/taro'
 import LightLoading from '../../components/LightLoading'
-import locationStore from '../../store/location'
+import { getRealLocationInfo, SETTLEMENT_CITY } from '../../utils/location'
 import {
   DEFAULT_DIRECTORY_REGION_ID,
   DEFAULT_DIRECTORY_REGION_TREE,
@@ -66,6 +66,7 @@ const MartyrsDirectory = () => {
   const [homeData, setHomeData] = useState<MartyrDirectoryHomeData>(initialHomeData)
   const [loading, setLoading] = useState(true)
   const [errorText, setErrorText] = useState('')
+  const [currentCity, setCurrentCity] = useState(SETTLEMENT_CITY)
 
   const syncPickerSelection = (indices: number[]) => {
     const nextColumns = getRegionPickerColumns(regionTree, indices)
@@ -128,10 +129,12 @@ const MartyrsDirectory = () => {
     void (async () => {
       const regionConfig = await loadRegionTree()
       const nextRegionTree = regionConfig.tree
-      const matchedRegion = findRegionSelectionByCity(nextRegionTree, locationStore.currentCity)
+      const locationInfo = await getRealLocationInfo(SETTLEMENT_CITY)
+      const matchedRegion = findRegionSelectionByCity(nextRegionTree, locationInfo.city)
       const fallbackRegion = findRegionSelectionByRegionId(nextRegionTree, regionConfig.defaultRegionId) || getRegionSelectionFromIndices(nextRegionTree, [0, 0, 0])
       const nextCurrentRegion = matchedRegion || fallbackRegion
 
+      setCurrentCity(locationInfo.city || SETTLEMENT_CITY)
       setRegionTree(nextRegionTree)
       setCurrentRegion(nextCurrentRegion)
       setPickerIndices(nextCurrentRegion.indices)
@@ -139,7 +142,7 @@ const MartyrsDirectory = () => {
       setSelectedRegion(nextCurrentRegion)
       setLocationNote(
         matchedRegion
-          ? `当前已根据 ${locationStore.currentCity} 展示本地烈士英名录。`
+          ? `当前已根据 ${locationInfo.city} 展示本地烈士英名录。`
           : `当前城市暂无地区化名录配置，已为你展示 ${fallbackRegion.regionName}。`
       )
       await loadHomeData(nextCurrentRegion)
@@ -189,7 +192,7 @@ const MartyrsDirectory = () => {
     <View className='martyr-page'>
       <View className='martyr-location-card'>
         <Text className='martyr-location-label'>当前地理位置</Text>
-        <Text className='martyr-location-city'>{locationStore.currentCity}</Text>
+        <Text className='martyr-location-city'>{currentCity}</Text>
         <Text className='martyr-location-region'>{currentRegion.displayLabel}</Text>
         <Text className='martyr-location-note'>{locationNote}</Text>
       </View>

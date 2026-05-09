@@ -2,11 +2,10 @@ import { Text, View } from '@tarojs/components'
 import { useState } from 'react'
 import Taro, { useDidShow } from '@tarojs/taro'
 import LightLoading from '../../../../components/LightLoading'
-import locationStore from '../../../../store/location'
+import { SETTLEMENT_LABEL } from '../../../../utils/location'
 import {
   DEFAULT_DIRECTORY_REGION_ID,
   DEFAULT_DIRECTORY_REGION_TREE,
-  findRegionSelectionByCity,
   findRegionSelectionByRegionId,
   getRegionSelectionFromIndices,
   RegionProvinceOption,
@@ -91,17 +90,14 @@ const TrainingPrograms = () => {
     }
 
     const regionConfig = await loadRegionTree()
-    const matchedRegion = findRegionSelectionByCity(regionConfig.tree, locationStore.currentCity)
     const fallbackRegion = findRegionSelectionByRegionId(regionConfig.tree, regionConfig.defaultRegionId)
       || getRegionSelectionFromIndices(regionConfig.tree, [0, 0, 0])
 
     setLocationNote(
-      matchedRegion
-        ? `当前已根据 ${locationStore.currentCity} 为你展示本地培训课程。`
-        : `当前城市暂无培训配置，已切换为 ${fallbackRegion.regionName}。`
+      `当前按安置位置 ${SETTLEMENT_LABEL} 为你展示培训课程。`
     )
 
-    return matchedRegion ? matchedRegion.regionId : fallbackRegion.regionId
+    return fallbackRegion.regionId
   }
 
   const loadPrograms = async () => {

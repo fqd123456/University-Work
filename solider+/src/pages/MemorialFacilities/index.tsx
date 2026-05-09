@@ -2,7 +2,7 @@ import { Image, Input, Picker, Text, View } from '@tarojs/components'
 import { useState } from 'react'
 import Taro, { useDidShow } from '@tarojs/taro'
 import LightLoading from '../../components/LightLoading'
-import locationStore from '../../store/location'
+import { getRealLocationInfo, SETTLEMENT_CITY } from '../../utils/location'
 import {
   DEFAULT_DIRECTORY_REGION_ID,
   DEFAULT_DIRECTORY_REGION_TREE,
@@ -63,6 +63,7 @@ const MemorialFacilities = () => {
   const [homeData, setHomeData] = useState<MemorialFacilitiesHomeData>(initialHomeData)
   const [loading, setLoading] = useState(true)
   const [errorText, setErrorText] = useState('')
+  const [currentCity, setCurrentCity] = useState(SETTLEMENT_CITY)
 
   const loadRegionTree = async () => {
     try {
@@ -125,11 +126,13 @@ const MemorialFacilities = () => {
     void (async () => {
       const regionConfig = await loadRegionTree()
       const nextRegionTree = regionConfig.tree
-      const matchedRegion = findRegionSelectionByCity(nextRegionTree, locationStore.currentCity)
+      const locationInfo = await getRealLocationInfo(SETTLEMENT_CITY)
+      const matchedRegion = findRegionSelectionByCity(nextRegionTree, locationInfo.city)
       const fallbackRegion = findRegionSelectionByRegionId(nextRegionTree, regionConfig.defaultRegionId)
         || getRegionSelectionFromIndices(nextRegionTree, [0, 0, 0])
       const nextCurrentRegion = matchedRegion || fallbackRegion
 
+      setCurrentCity(locationInfo.city || SETTLEMENT_CITY)
       setRegionTree(nextRegionTree)
       setCurrentRegion(nextCurrentRegion)
       setPickerIndices(nextCurrentRegion.indices)
@@ -137,7 +140,7 @@ const MemorialFacilities = () => {
       setSelectedRegion(nextCurrentRegion)
       setLocationNote(
         matchedRegion
-          ? `当前已根据 ${locationStore.currentCity} 展示本地纪念设施。`
+          ? `当前已根据 ${locationInfo.city} 展示本地纪念设施。`
           : `当前城市暂无地区化设施配置，已为你展示 ${fallbackRegion.regionName}。`
       )
       await loadHomeData(nextCurrentRegion)
@@ -187,7 +190,7 @@ const MemorialFacilities = () => {
     <View className='memorial-page'>
       <View className='memorial-location-card'>
         <Text className='memorial-location-label'>当前地理位置</Text>
-        <Text className='memorial-location-city'>{locationStore.currentCity}</Text>
+        <Text className='memorial-location-city'>{currentCity}</Text>
         <Text className='memorial-location-region'>{currentRegion.displayLabel}</Text>
         <Text className='memorial-location-note'>{locationNote}</Text>
       </View>

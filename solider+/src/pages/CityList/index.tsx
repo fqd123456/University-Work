@@ -1,25 +1,41 @@
 import { View, Text, Input, ScrollView } from '@tarojs/components'
 import { useState } from 'react'
 import { observer } from 'mobx-react'
-import Taro from '@tarojs/taro'
+import Taro, { useDidShow } from '@tarojs/taro'
 import locationStore from '../../store/location'
+import { getRealLocationInfo, SETTLEMENT_CITY } from '../../utils/location'
 import './index.scss'
 
-// 假设的城市数据结构
 const CITY_DATA = [
-    { title: 'A', items: ['阿坝州', '阿尔山', '阿克苏'] },
-    { title: 'B', items: ['北京市', '白银市', '保定市'] },
-    // ... 更多数据
+    { title: 'B', items: ['北京市', '保定市'] },
+    { title: 'C', items: ['成都市', '重庆市', '长沙市'] },
+    { title: 'F', items: ['福州市', '抚州市'] },
+    { title: 'G', items: ['广州市', '贵阳市'] },
+    { title: 'H', items: ['杭州市', '合肥市'] },
+    { title: 'N', items: ['南昌市', '南京市', '宁波市'] },
+    { title: 'S', items: ['上海市', '深圳市', '苏州市'] },
+    { title: 'T', items: ['天津市', '太原市'] },
+    { title: 'W', items: ['武汉市', '无锡市'] },
+    { title: 'X', items: ['西安市', '厦门市'] },
 ]
 const ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z']
+const HOT_CITIES = ['北京市', '上海市', '广州市', '深圳市', '杭州市', '成都市', '武汉市', '抚州市']
 
 const CityList = observer(() => {
     const [scrollTarget, setScrollTarget] = useState('')
+    const [locatedCity, setLocatedCity] = useState(SETTLEMENT_CITY)
 
     const handleSelect = (city) => {
         locationStore.setCity(city)
         Taro.navigateBack() // 选中后返回首页
     }
+
+    useDidShow(() => {
+        void (async () => {
+            const locationInfo = await getRealLocationInfo(SETTLEMENT_CITY)
+            setLocatedCity(locationInfo.city || SETTLEMENT_CITY)
+        })()
+    })
 
     return (
         <View className='city-list-page'>
@@ -38,7 +54,7 @@ const CityList = observer(() => {
                 <View className='section' id='top'>
                     <Text className='section-title'>定位/历史城市</Text>
                     <View className='tag-container'>
-                        <View className='city-tag active'>{locationStore.currentCity}</View>
+                        <View className='city-tag active' onClick={() => handleSelect(locatedCity)}>{locatedCity}</View>
                     </View>
                 </View>
 
@@ -46,7 +62,7 @@ const CityList = observer(() => {
                 <View className='section'>
                     <Text className='section-title'>热门城市</Text>
                     <View className='tag-grid'>
-                        {['北京市', '广州市', '上海市', '成都市'].map(city => (
+                        {HOT_CITIES.map(city => (
                             <View key={city} className='city-tag' onClick={() => handleSelect(city)}>{city}</View>
                         ))}
                     </View>

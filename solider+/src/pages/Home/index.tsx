@@ -5,6 +5,7 @@ import CustomNav from '../../components/HomeNav'
 import AppGrid, { GridItem } from '../../components/AppGrid'
 import { getRecentHomeServices, recordRecentService, ServiceItem } from '../Service/serviceDate'
 import { ensureProtectedPageAccess } from '../../utils/auth'
+import { NEWS_CURRENT_ITEM_KEY, NEWS_LIST_CACHE_KEY, NewsItem, normalizeNewsItem } from '../News/newsData'
 import {
   GuideStep,
   guideSteps,
@@ -16,15 +17,20 @@ import {
 import './index.scss'
 
 const Mine = () => {
-  // 新闻资讯列表
-  const newsList = [
-    { id: 1, title: '退役军人事务局发布最新优待政策' },
-    { id: 2, title: '全市退役军人专场招聘会圆满结束' },
-    { id: 3, title: '关于开展志愿服务活动的通知' }
-  ];
   const [completedMap, setCompletedMap] = useState<Record<string, boolean>>(() => getGuideCompletionMap())
   const [items, setItems] = useState<GuideStep[]>(guideSteps)
   const [serviceData, setServiceData] = useState<GridItem[]>(() => getRecentHomeServices())
+  const [newsList, setNewsList] = useState<NewsItem[]>(() => {
+    const cacheList = Taro.getStorageSync(NEWS_LIST_CACHE_KEY)
+    if (!Array.isArray(cacheList)) {
+      return []
+    }
+
+    return cacheList
+      .map(item => normalizeNewsItem(item))
+      .filter((item): item is NewsItem => !!item && item.tab === 'veteran')
+      .slice(0, 3)
+  })
   const completedCount = items.filter(item => completedMap[item.id]).length
   const isAllCompleted = completedCount === items.length
   const firstPendingStep = items.find(item => !completedMap[item.id])
@@ -53,8 +59,47 @@ const Mine = () => {
       })
     }
 
+    const loadVeteranNews = async () => {
+      try {
+        const res = await Taro.cloud.callFunction({
+          name: 'getNewsData',
+          data: {
+            action: 'list',
+            limit: 12,
+          }
+        })
+
+        const result = res.result as any
+        if (!result || result.success !== true || !Array.isArray(result.data)) {
+          return
+        }
+
+        const nextList = result.data
+          .map(item => normalizeNewsItem(item))
+          .filter((item): item is NewsItem => !!item)
+
+        const veteranList = nextList
+          .filter(item => item.tab === 'veteran')
+          .slice(0, 3)
+
+        if (nextList.length) {
+          Taro.setStorageSync(NEWS_LIST_CACHE_KEY, nextList)
+        }
+
+        setNewsList(veteranList)
+      } catch (error) {
+        console.error('首页退役专栏加载失败', error)
+      }
+    }
+
     void loadGuideData()
+    void loadVeteranNews()
   })
+
+  const goNewsDetail = (item: NewsItem) => {
+    Taro.setStorageSync(NEWS_CURRENT_ITEM_KEY, item)
+    Taro.navigateTo({ url: `/pages/News/page/NewsDetail/index?id=${item.id}` })
+  }
 
   return (
     <View className='mainPage'>
@@ -67,7 +112,7 @@ const Mine = () => {
         </View>
         <View className='itemContent'>
           {newsList.map(item => (
-            <View key={item.id} className='itemNews'>
+            <View key={item.id} className='itemNews' onClick={() => goNewsDetail(item)}>
               <Text className='itemCenter'>{item.title}</Text>
             </View>
           ))}
